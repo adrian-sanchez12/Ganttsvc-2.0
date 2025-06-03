@@ -1,0 +1,32 @@
+[2025-04-02 05:28:34] Solicitud recibida: POST
+[2025-04-02 05:28:34] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php4F77.tmp","error":0,"size":222843}
+[2025-04-02 05:28:34] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:28:34] ✅ Archivo subido exitosamente a /uploads/documento-2-67ecaee23acf6.pdf
+[2025-04-02 05:36:33] Solicitud recibida: POST
+[2025-04-02 05:36:33] 📄 Archivo recibido: {"name":"catalogo-conceptos-ingresos-y-egresos-para-bcr-1.pdf","full_path":"catalogo-conceptos-ingresos-y-egresos-para-bcr-1.pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php9F4B.tmp","error":0,"size":697889}
+[2025-04-02 05:36:34] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:36:34] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ecb0c21aab7.pdf
+[2025-04-02 05:42:01] Solicitud recibida: POST
+[2025-04-02 05:42:01] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\phpA1D5.tmp","error":0,"size":222843}
+[2025-04-02 05:42:01] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:42:01] ✅ Archivo subido exitosamente a /gantt-backend/uploads/documento-3-67ecb209b1e81.pdf
+[2025-04-02 05:44:19] Solicitud recibida: POST
+[2025-04-02 05:44:19] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\phpBDA1.tmp","error":0,"size":222843}
+[2025-04-02 05:44:19] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:44:19] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ecb293d4873.pdf
+[2025-04-02 05:44:29] Solicitud recibida: POST
+[2025-04-02 05:44:29] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\phpE195.tmp","error":0,"size":222843}
+[2025-04-02 05:44:29] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:44:29] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-3-67ecb29d0bb6c.pdf
+[2025-04-02 05:44:52] Solicitud recibida: POST
+[2025-04-02 05:44:52] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php3D62.tmp","error":0,"size":222843}
+[2025-04-02 05:44:52] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:44:52] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ecb2b488737.pdf
+[2025-04-02 05:45:00] Solicitud recibida: POST
+[2025-04-02 05:45:00] 📄 Archivo recibido: {"name":"Resumen 10.pdf","full_path":"Resumen 10.pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php5AFD.tmp","error":0,"size":152959}
+[2025-04-02 05:45:00] 📎 Tipo MIME detectado: application/pdf
+[2025-04-02 05:45:00] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-3-67ecb2bc237e6.pdf
+[2025-04-02 22:38:54] Solicitud recibida: POST
+[2025-04-02 22:38:54] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\phpDFFC.tmp","error":0,"size":222843}
+[2025-04-02 22:38:54]  Tipo MIME detectado: application/pdf
+[2025-04-02 22:38:54]  Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67eda05e447b3.pdf

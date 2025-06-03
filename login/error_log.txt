@@ -1,0 +1,10 @@
+[06-Apr-2025 23:42:07 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gantt.usuarios' doesn't exist in C:\xampp\htdocs\gantt-backend\api\login\index.php:38
+Stack trace:
+#0 C:\xampp\htdocs\gantt-backend\api\login\index.php(38): mysqli->prepare('SELECT * FROM u...')
+#1 {main}
+  thrown in C:\xampp\htdocs\gantt-backend\api\login\index.php on line 38
+[06-Apr-2025 23:42:35 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gantt.usuarios' doesn't exist in C:\xampp\htdocs\gantt-backend\api\login\index.php:38
+Stack trace:
+#0 C:\xampp\htdocs\gantt-backend\api\login\index.php(38): mysqli->prepare('SELECT * FROM u...')
+#1 {main}
+  thrown in C:\xampp\htdocs\gantt-backend\api\login\index.php on line 38

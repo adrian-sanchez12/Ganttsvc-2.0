@@ -1,0 +1,7 @@
+[2025-04-04 05:06:49] Solicitud recibida: GET
+[2025-04-04 05:06:49]  Método no permitido.
+[2025-04-04 05:11:09] Solicitud recibida: POST
+[2025-04-04 05:11:09] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php75AD.tmp","error":0,"size":222843}
+[2025-04-04 05:11:09]  Tipo MIME detectado: application/pdf
+[2025-04-04 05:11:09] 📁 Carpeta creada: C:\xampp\htdocs\gantt-backend\api\upload/../public/uploads/
+[2025-04-04 05:11:09]  Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ef4dcd16cef.pdf
