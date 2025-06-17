@@ -20,22 +20,6 @@ if ($method === "GET") {
     try {
         $result = $conn->query("SELECT * FROM oportunidades");
         $oportunidades = $result->fetch_all(MYSQLI_ASSOC);
-
-        //Para conseguir todos los funcionarios relacionados a x oportunidad
-        foreach ($oportunidades as &$oportunidad) {
-            $id = $oportunidad["id"];
-            $stmt = $conn->prepare("
-                SELECT f.id_funcionario, f.nombre_funcionario
-                FROM oportunidades_funcionario ofa
-                INNER JOIN funcionario f ON ofa.id_funcionario = f.id_funcionario
-                WHERE ofa.id_oportunidades = ?
-            ");
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $res = $stmt->get_result();
-            $oportunidad["funcionarios"] = $res->fetch_all(MYSQLI_ASSOC);
-        }
-
         echo json_encode($oportunidades);
     } catch (Exception $e) {
         http_response_code(500);
@@ -50,73 +34,50 @@ if ($method === "POST") {
 
     // Limpia y extrae campos
     $nombre_oportunidad = trim($data["nombre_oportunidad"] ?? "");
+    $objetivo = trim($data["objetivo"] ?? "");
     $modalidad = trim($data["modalidad"] ?? "");
     $tipo_oportunidad = trim($data["tipo_oportunidad"] ?? "");
     $socio = trim($data["socio"] ?? "");
     $sector = trim($data["sector"] ?? "");
-    $fecha = trim($data["fecha"] ?? "");
-    $despacho = trim($data["despacho"] ?? "");
     $tema = trim($data["tema"] ?? "");
-    $funcionarios = $data["funcionarios"] ?? [];
+    $despacho = trim($data["despacho"] ?? "");
+    $direccion_envio = trim($data["direccion_envio"] ?? "");
+    $fecha_inicio = trim($data["fecha_inicio"] ?? "");
+    $fecha_fin = trim($data["fecha_fin"] ?? "");
+    $funcionario = trim($data["funcionario"] ?? "");
 
     // Valida campos obligatorios
-    if (!$nombre_oportunidad || !$fecha || !$socio) {
+    if (!$nombre_oportunidad || !$fecha_inicio || !$socio || !$objetivo) {
         http_response_code(400);
-        echo json_encode(["error" => "Faltan campos obligatorios como nombre_oportunidad, fecha o socio"]);
+        echo json_encode(["error" => "Faltan campos obligatorios como nombre_oportunidad, fecha, socio u objetivo"]);
         exit;
     }
 
     try {
         $stmt = $conn->prepare(query: "
             INSERT INTO oportunidades (
-                nombre_oportunidad, modalidad, tipo_oportunidad, socio,
-                sector, fecha, despacho, tema
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                nombre_oportunidad, objetivo, modalidad, tipo_oportunidad, socio,
+                sector, tema, despacho, direccion_envio, 
+                fecha_inicio, fecha_fin, funcionario
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
         $stmt->bind_param(
-            "ssssssss",
+            "ssssssssssss",
             $nombre_oportunidad,
+            $objetivo,
             $modalidad,
             $tipo_oportunidad,
             $socio,
             $sector,
-            $fecha,
+            $tema,
             $despacho,
-            $tema
+            $direccion_envio,
+            $fecha_inicio,
+            $fecha_fin,
+            $funcionario
         );
 
         $stmt->execute();
-        $id_oportunidad = $conn->insert_id; //Consigue el id para la tabla de oportunidades_funcionario
-
-        // Añade cada funcionario a su tabla (del mismo nombre)
-        if (!empty($funcionarios) && is_array($funcionarios)) {
-            foreach ($funcionarios as $nombre_funcionario) {
-                $nombre_funcionario = trim($nombre_funcionario);
-
-                // Busca si ya existe
-                $stmtBuscar = $conn->prepare("SELECT id_funcionario FROM funcionario WHERE nombre_funcionario = ?");
-                $stmtBuscar->bind_param("s", $nombre_funcionario);
-                $stmtBuscar->execute();
-                $resultado = $stmtBuscar->get_result();
-
-                if ($resultado->num_rows > 0) {
-                    $fila = $resultado->fetch_assoc();
-                    $id_funcionario = $fila["id_funcionario"];
-                }
-                //Crea el funcionario si no existe 
-                else {
-                    $stmtInsert = $conn->prepare("INSERT INTO funcionario (nombre_funcionario) VALUES (?)");
-                    $stmtInsert->bind_param("s", $nombre_funcionario);
-                    $stmtInsert->execute();
-                    $id_funcionario = $conn->insert_id;
-                }
-
-                // Se crea la relación para la tabla oportunidades_funcionario
-                $stmtRelacion = $conn->prepare("INSERT INTO oportunidades_funcionario (id_oportunidades, id_funcionario) VALUES (?, ?)");
-                $stmtRelacion->bind_param("ii", $id_oportunidad, $id_funcionario);
-                $stmtRelacion->execute();
-            }
-        }
 
         echo json_encode(["message" => "Oportunidad creada correctamente"]);
     } catch (Exception $e) {
@@ -139,8 +100,9 @@ if ($method === "PUT") {
     }
 
     $campos_permitidos = [
-        "nombre_oportunidad", "modalidad", "tipo_oportunidad", "socio",
-        "sector", "fecha", "despacho", "tema"
+        "nombre_oportunidad", "objetivo", "modalidad", "tipo_oportunidad", "socio",
+        "sector", "tema", "despacho", "direccion_envio", "fecha_inicio",
+        "fecha_fin", "funcionario"
     ];
 
     $updates = [];
@@ -170,47 +132,7 @@ if ($method === "PUT") {
             $stmt->execute();
         }
 
-        // También edita la info de relaciones si viene
-        if (isset($data["funcionarios"]) && is_array($data["funcionarios"])) {
-            $nombres_funcionarios = $data["funcionarios"];
-
-            // Elimina las relaciones actuales en oportunidades_funcionario
-            $stmtDel = $conn->prepare("DELETE FROM oportunidades_funcionario WHERE id_oportunidades = ?");
-            $stmtDel->bind_param("i", $id);
-            $stmtDel->execute();
-
-            foreach ($nombres_funcionarios as $nombre_funcionario) {
-                $nombre_funcionario = trim($nombre_funcionario);
-
-                // Verifica si ya existe el funcionario
-                $stmtBuscar = $conn->prepare("SELECT id_funcionario FROM funcionario WHERE nombre_funcionario = ?");
-                $stmtBuscar->bind_param("s", $nombre_funcionario);
-                $stmtBuscar->execute();
-                $res = $stmtBuscar->get_result();
-
-                if ($res->num_rows > 0) {
-                    $fila = $res->fetch_assoc();
-                    $id_funcionario = $fila["id_funcionario"];
-                }
-                //Sino, lo crea 
-                else {
-                    $stmtInsert = $conn->prepare("INSERT INTO funcionario (nombre_funcionario) VALUES (?)");
-                    $stmtInsert->bind_param("s", $nombre_funcionario);
-                    $stmtInsert->execute();
-                    $id_funcionario = $conn->insert_id;
-                }
-
-                // Inserta relación 
-                $stmtRelacion = $conn->prepare("
-                    INSERT INTO oportunidades_funcionario (id_oportunidades, id_funcionario) 
-                    VALUES (?, ?)
-                ");
-                $stmtRelacion->bind_param("ii", $id, $id_funcionario);
-                $stmtRelacion->execute();
-            }
-        }
-
-        echo json_encode(["message" => "Oportunidad y funcionarios actualizados correctamente"]);
+        echo json_encode(["message" => "Oportunidad actualizada correctamente"]);
 
     } catch (Exception $e) {
         http_response_code(500);
@@ -243,7 +165,6 @@ if ($method === "DELETE") {
         }
 
         // Elimina el registro en oportunidades
-        // La relación se elimina automaticamente por el cascade en la base de datos
         $stmt = $conn->prepare("DELETE FROM oportunidades WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
