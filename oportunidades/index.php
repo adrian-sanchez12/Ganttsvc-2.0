@@ -40,6 +40,7 @@ if ($method === "POST") {
     $socio = trim($data["socio"] ?? "");
     $sector = trim($data["sector"] ?? "");
     $tema = trim($data["tema"] ?? "");
+    $poblacion_meta = trim($data["poblacion_meta"] ?? "");
     $despacho = trim($data["despacho"] ?? "");
     $direccion_envio = trim($data["direccion_envio"] ?? "");
     $fecha_inicio = trim($data["fecha_inicio"] ?? "");
@@ -57,12 +58,12 @@ if ($method === "POST") {
         $stmt = $conn->prepare(query: "
             INSERT INTO oportunidades (
                 nombre_oportunidad, objetivo, modalidad, tipo_oportunidad, socio,
-                sector, tema, despacho, direccion_envio, 
+                sector, tema, poblacion_meta, despacho, direccion_envio, 
                 fecha_inicio, fecha_fin, funcionario
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
         $stmt->bind_param(
-            "ssssssssssss",
+            "sssssssssssss",
             $nombre_oportunidad,
             $objetivo,
             $modalidad,
@@ -70,6 +71,7 @@ if ($method === "POST") {
             $socio,
             $sector,
             $tema,
+            $poblacion_meta,
             $despacho,
             $direccion_envio,
             $fecha_inicio,
@@ -101,7 +103,7 @@ if ($method === "PUT") {
 
     $campos_permitidos = [
         "nombre_oportunidad", "objetivo", "modalidad", "tipo_oportunidad", "socio",
-        "sector", "tema", "despacho", "direccion_envio", "fecha_inicio",
+        "sector", "tema", "poblacion_meta", "despacho", "direccion_envio", "fecha_inicio",
         "fecha_fin", "funcionario"
     ];
 
