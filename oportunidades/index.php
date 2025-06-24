@@ -104,7 +104,7 @@ if ($method === "PUT") {
     $campos_permitidos = [
         "nombre_oportunidad", "objetivo", "modalidad", "tipo_oportunidad", "socio",
         "sector", "tema", "poblacion_meta", "despacho", "direccion_envio", "fecha_inicio",
-        "fecha_fin", "funcionario"
+        "fecha_fin", "funcionario", "doc_pdf"
     ];
 
     $updates = [];
