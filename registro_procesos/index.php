@@ -40,7 +40,7 @@ if ($method === "GET") {
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $stmt = $conn->prepare("INSERT INTO registro_procesos (convenio_id, entidad_proponente, autoridad_ministerial, funcionario_emisor, entidad_emisora, funcionario_receptor, entidad_receptora, registro_proceso, fecha_inicio, fecha_final, tipo_convenio, fase_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO registro_procesos (convenio_id, entidad_proponente, autoridad_ministerial, funcionario_emisor, entidad_emisora, funcionario_receptor, entidad_receptora, registro_proceso, fecha_inicio, fecha_final, tipo_convenio, fase_registro, doc_pdf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
         "isssssssssss",
         $data["convenio_id"],
@@ -54,7 +54,8 @@ if ($method === "POST") {
         formatDateForMariaDB($data["fecha_inicio"]),
         formatDateForMariaDB($data["fecha_final"]),
         $data["tipo_convenio"],
-        $data["fase_registro"]
+        $data["fase_registro"],
+        $data["doc_pdf"]
     );
     $stmt->execute();
 
@@ -75,34 +76,55 @@ if ($method === "PUT") {
         exit;
     }
 
-    // Validar fechas correctamente
-    $fecha_inicio = formatDateForMariaDB($data["fecha_inicio"] ?? null);
-    $fecha_final = formatDateForMariaDB($data["fecha_final"] ?? null);
+    $allowedFields = [
+        "entidad_proponente", 
+        "autoridad_ministerial", 
+        "funcionario_emisor",
+        "entidad_emisora", 
+        "funcionario_receptor", 
+        "entidad_receptora",
+        "registro_proceso", 
+        "fecha_inicio", 
+        "fecha_final", 
+        "tipo_convenio",
+        "fase_registro", 
+        "doc_pdf"
+    ];
 
-    $stmt = $conn->prepare("UPDATE registro_procesos SET entidad_proponente = ?, autoridad_ministerial = ?, funcionario_emisor = ?, entidad_emisora = ?, funcionario_receptor = ?, entidad_receptora = ?, registro_proceso = ?, fecha_inicio = ?, fecha_final = ?, tipo_convenio = ?, fase_registro = ? WHERE id = ?");
-    $stmt->bind_param(
-        "sssssssssssi",
-        $data["entidad_proponente"],
-        $data["autoridad_ministerial"],
-        $data["funcionario_emisor"],
-        $data["entidad_emisora"],
-        $data["funcionario_receptor"],
-        $data["entidad_receptora"],
-        $data["registro_proceso"],
-        $fecha_inicio,
-        $fecha_final,
-        $data["tipo_convenio"],
-        $data["fase_registro"],
-        $data["id"]
-    );
+    $setParts = [];
+    $values = [];
 
-    if (!$stmt->execute()) {
-        http_response_code(500);
-        echo json_encode(["error" => "Error al actualizar el registro"]);
+    foreach ($allowedFields as $field) {
+        if (array_key_exists($field, $data)) {
+            if ($field == "fecha_inicio" || $field == "fecha_final") {
+                $values[] = formatDateForMariaDB($data[$field]);
+            } else {
+                $values[] = $data[$field];
+            }
+            $setParts[] = "$field = ?";
+        }
+    }
+
+    if (empty($setParts)) {
+        http_response_code(400);
+        echo json_encode(["error" => "No se enviaron campos para actualizar"]);
         exit;
     }
 
-    // Actualizar fase actual
+    $values[] = $data["id"];
+    $sql = "UPDATE registro_procesos SET " . implode(", ", $setParts) . " WHERE id = ?";
+
+    $types = str_repeat("s", count($setParts)) . "i"; // Cambia 's' a otro tipo si tienes INT, DATE, etc.
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param($types, ...$values);
+
+    if (!$stmt->execute()) {
+        http_response_code(500);
+        echo json_encode(["error" => "Error al actualizar el registro", "detalles" => $stmt->error]);
+        exit;
+    }
+
+    // Actualizar fase actual (igual que antes)
     $convenio_id = $data["convenio_id"] ?? null;
     if ($convenio_id) {
         $last = $conn->query("SELECT fase_registro FROM registro_procesos WHERE convenio_id = $convenio_id ORDER BY id DESC LIMIT 1")->fetch_assoc();
@@ -110,55 +132,6 @@ if ($method === "PUT") {
     }
 
     echo json_encode(["message" => "Registro actualizado exitosamente"]);
-    exit;
-}
-
-if ($method === "DELETE") {
-    $id = $_GET["id"] ?? null;
-
-    if (!$id) {
-        http_response_code(400);
-        echo json_encode(["error" => "ID es obligatorio"]);
-        exit;
-    }
-
-    // Obtener convenio_id
-    $stmt = $conn->prepare("SELECT convenio_id FROM registro_procesos WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0) {
-        http_response_code(404);
-        echo json_encode(["error" => "Registro no encontrado"]);
-        exit;
-    }
-
-    $row = $result->fetch_assoc();
-    $convenio_id = $row["convenio_id"];
-
-    // Eliminar registro
-    $stmt = $conn->prepare("DELETE FROM registro_procesos WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    if (!$stmt->execute()) {
-        http_response_code(500);
-        echo json_encode(["error" => "Error al eliminar el registro"]);
-        exit;
-    }
-
-    // Recalcular fase actual
-    $stmt = $conn->prepare("SELECT fase_registro FROM registro_procesos WHERE convenio_id = ? ORDER BY id DESC LIMIT 1");
-    $stmt->bind_param("i", $convenio_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $fase = $result->num_rows > 0 ? $result->fetch_assoc()["fase_registro"] : "Negociación";
-
-    // Actualizar fase_actual
-    $stmt = $conn->prepare("UPDATE convenios SET fase_actual = ? WHERE id = ?");
-    $stmt->bind_param("si", $fase, $convenio_id);
-    $stmt->execute();
-
-    echo json_encode(["message" => "Registro eliminado exitosamente"]);
     exit;
 }
 

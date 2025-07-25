@@ -92,6 +92,37 @@ if ($method === "POST") {
     exit;
 }
 
+if ($method === "PUT") {
+    $body = json_decode(file_get_contents("php://input"), true);
+
+    $id = $body["id"] ?? null;
+    $cooperante = $body["cooperante"] ?? null;
+    $nombre = $body["nombre"] ?? null;
+    $sector = $body["sector"] ?? null;
+    $fase_actual = $body["fase_actual"] ?? "Negociación";
+    $firmado = isset($body["firmado"]) && $body["firmado"] ? 1 : 0;
+    $consecutivo = $body["consecutivo_numerico"] ?? null;
+
+    if (!$id || !$cooperante || !$nombre || $sector === null || $consecutivo === null) {
+        http_response_code(400);
+        echo json_encode(["error" => "Faltan campos obligatorios"]);
+        exit;
+    }
+
+    $stmt = $conn->prepare("UPDATE convenios SET cooperante = ?, nombre = ?, sector = ?, fase_actual = ?, firmado = ?, consecutivo_numerico = ? WHERE id = ?");
+    $stmt->bind_param("ssssisi", $cooperante, $nombre, $sector, $fase_actual, $firmado, $consecutivo, $id);
+
+    if ($stmt->execute()) {
+        echo json_encode(["message" => "Convenio actualizado correctamente"]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["error" => "Error en la base de datos: " . $stmt->error]);
+    }
+
+    $stmt->close();
+    exit;
+}
+
 
 if ($method === "DELETE") {
     parse_str($_SERVER["QUERY_STRING"], $query);
