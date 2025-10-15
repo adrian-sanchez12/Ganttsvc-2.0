@@ -51,72 +51,60 @@ if ($method === "GET") {
 // ==============================
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true) ?? [];
+    $NumProyecto = isset($data["NumProyecto"]) ? intval($data["NumProyecto"]) : 0;
+    $NombreProyecto = trim($data["NombreProyecto"] ?? "");
+    $FechaAprovacion = trim($data["FechaAprovacion"] ?? "");
 
-    // Extrae y limpia
-    $NumProyecto              = isset($data["NumProyecto"]) ? intval($data["NumProyecto"]) : 0;
-    $ActorCooperacion         = trim($data["ActorCooperacion"] ?? "");
-    $NombreActor              = trim($data["NombreActor"] ?? "");
-    $NombreProyecto           = trim($data["NombreProyecto"] ?? "");
-    $FechaAprovacion          = trim($data["FechaAprovacion"] ?? ""); // YYYY-MM-DD
-    $EtapaProyecto            = trim($data["EtapaProyecto"] ?? "");
-    $TipoProyecto             = trim($data["TipoProyecto"] ?? "");
-    $CostoTotal               = trim($data["CostoTotal"] ?? "");
-    $ContrapartidaInstitucion = trim($data["ContrapartidaInstitucion"] ?? "");
-    $Documentos               = trim($data["Documentos"] ?? "");
-    $Observaciones            = trim($data["Observaciones"] ?? "");
-    $Objetivos                = trim($data["Objetivos"] ?? "");
-    $Resultados               = trim($data["Resultados"] ?? "");
-    $Tematicas                = trim($data["Tematicas"] ?? "");
-    $Dependencia              = trim($data["Dependencia"] ?? "");
-    $Ano                      = trim($data["Ano"] ?? "");
-    $ContrapartidaCooperante  = trim($data["ContrapartidaCooperante"] ?? "");
-    $Areas                    = trim($data["Areas"] ?? "");
-    $InstitucionSolicitante   = trim($data["InstitucionSolicitante"] ?? "");
-    $Region                   = trim($data["Region"] ?? "");
-
-    // Valida campos mínimos
-    if (!$NumProyecto || $NombreProyecto === "") {
-        json_out(["error" => "Faltan campos obligatorios: NumProyecto y NombreProyecto"], 400);
+    if (!$NombreProyecto || !$FechaAprovacion) {
+        json_out(["error" => "Los campos 'NombreProyecto' y 'FechaAprovacion' son obligatorios"], 400);
     }
 
     try {
-        $sql = "
-            INSERT INTO proyecto (
-                NumProyecto, ActorCooperacion, NombreActor, NombreProyecto,
-                FechaAprovacion, EtapaProyecto, TipoProyecto, CostoTotal,
-                ContrapartidaInstitucion, Documentos, Observaciones, Objetivos,
-                Resultados, Tematicas, Dependencia, Ano, ContrapartidaCooperante,
-                Areas, InstitucionSolicitante, Region
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-        ";
+        if ($NumProyecto > 0) {
+            $check = $conn->prepare("SELECT COUNT(*) AS total FROM proyecto WHERE NumProyecto = ?");
+            $check->bind_param("i", $NumProyecto);
+            $check->execute();
+            $res = $check->get_result()->fetch_assoc();
+            if ($res["total"] > 0) {
+                json_out(["error" => "El número de proyecto ya existe."], 409);
+            }
+        }
+
+        // Si pasa la validación, ejecutar INSERT normal
+        $sql = "INSERT INTO proyecto (
+            NumProyecto, ActorCooperacion, NombreActor, NombreProyecto,
+            FechaAprovacion, EtapaProyecto, TipoProyecto, CostoTotal,
+            ContrapartidaInstitucion, Documentos, Observaciones, Objetivos,
+            Resultados, Tematicas, Dependencia, Ano, ContrapartidaCooperante,
+            Areas, InstitucionSolicitante, Region
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($sql);
-        // i + 19 s
         $stmt->bind_param(
             "isssssssssssssssssss",
             $NumProyecto,
-            $ActorCooperacion,
-            $NombreActor,
-            $NombreProyecto,
-            $FechaAprovacion,
-            $EtapaProyecto,
-            $TipoProyecto,
-            $CostoTotal,
-            $ContrapartidaInstitucion,
-            $Documentos,
-            $Observaciones,
-            $Objetivos,
-            $Resultados,
-            $Tematicas,
-            $Dependencia,
-            $Ano,
-            $ContrapartidaCooperante,
-            $Areas,
-            $InstitucionSolicitante,
-            $Region
+            $data["ActorCooperacion"],
+            $data["NombreActor"],
+            $data["NombreProyecto"],
+            $data["FechaAprovacion"],
+            $data["EtapaProyecto"],
+            $data["TipoProyecto"],
+            $data["CostoTotal"],
+            $data["ContrapartidaInstitucion"],
+            $data["Documentos"],
+            $data["Observaciones"],
+            $data["Objetivos"],
+            $data["Resultados"],
+            $data["Tematicas"],
+            $data["Dependencia"],
+            $data["Ano"],
+            $data["ContrapartidaCooperante"],
+            $data["Areas"],
+            $data["InstitucionSolicitante"],
+            $data["Region"]
         );
-
         $stmt->execute();
+
         json_out(["message" => "Proyecto creado correctamente"]);
     } catch (Exception $e) {
         json_out(["error" => "Error al guardar el proyecto: " . $e->getMessage()], 500);
