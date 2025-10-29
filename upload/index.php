@@ -13,6 +13,7 @@ function handleCORS() {
 }
 handleCORS();
 
+// Log para depuración
 $logFile = __DIR__ . "/upload_debug.log";
 function logMessage($message) {
     global $logFile;
@@ -21,66 +22,72 @@ function logMessage($message) {
 
 logMessage("Solicitud recibida: " . $_SERVER['REQUEST_METHOD']);
 
+// Validar método
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    logMessage(" M茅todo no permitido.");
-    echo json_encode(['error' => 'M茅todo no permitido']);
+    logMessage("❌ Método no permitido.");
+    echo json_encode(['error' => 'Método no permitido']);
     exit;
 }
 
+// Validar archivo e ID
 if (!isset($_FILES['file']) || !isset($_POST['id'])) {
     http_response_code(400);
-    logMessage(" Falta archivo o ID. POST: " . json_encode($_POST));
-    echo json_encode(['error' => 'Faltan par谩metros: archivo o ID']);
+    logMessage("❌ Falta archivo o ID. POST: " . json_encode($_POST));
+    echo json_encode(['error' => 'Faltan parámetros: archivo o ID']);
     exit;
 }
 
 $file = $_FILES['file'];
 $id = $_POST['id'];
-logMessage("馃搫 Archivo recibido: " . json_encode($file));
+logMessage("📄 Archivo recibido: " . json_encode($file));
 
+// Verificar errores de carga
 if ($file['error'] !== UPLOAD_ERR_OK) {
     http_response_code(500);
-    logMessage(" Error al subir el archivo. C贸digo: " . $file['error']);
+    logMessage("❌ Error al subir el archivo. Código: " . $file['error']);
     echo json_encode(['error' => 'Error al subir el archivo']);
     exit;
 }
 
+// Validar tipo MIME
 $allowedTypes = ['application/pdf'];
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mimeType = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
 
-logMessage(" Tipo MIME detectado: $mimeType");
+logMessage("📎 Tipo MIME detectado: $mimeType");
 
 if (!in_array($mimeType, $allowedTypes)) {
     http_response_code(400);
-    logMessage(" Tipo no permitido.");
+    logMessage("❌ Tipo no permitido.");
     echo json_encode(['error' => 'Solo se permiten archivos PDF']);
     exit;
 }
 
-$uploadDir = __DIR__ . '/../public/uploads/';
-$baseUrl = '/gantt-backend/public/uploads/';
-
+// Crear carpeta si no existe
+$uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0755, true);
-    logMessage("馃搧 Carpeta creada: $uploadDir");
+    logMessage("📁 Carpeta creada: $uploadDir");
 }
 
+// Guardar archivo con nombre único
 $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
 $filename = "documento-$id-" . uniqid() . ".$extension";
 $destination = $uploadDir . $filename;
 
 if (!move_uploaded_file($file['tmp_name'], $destination)) {
     http_response_code(500);
-    logMessage(" No se pudo mover el archivo a: $destination");
+    logMessage("❌ No se pudo mover el archivo a: $destination");
     echo json_encode(['error' => 'No se pudo guardar el archivo']);
     exit;
 }
 
-$url = $baseUrl . $filename;
-logMessage(" Archivo subido exitosamente a $url");
+// Ruta pública accesible desde el frontend
+$url = '/uploads/' . $filename;
+
+logMessage("✅ Archivo subido exitosamente a $url");
 
 http_response_code(200);
 echo json_encode(['url' => $url]);

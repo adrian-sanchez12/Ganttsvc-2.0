@@ -1,12 +1,15 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-include_once("../../db.php"); 
+include_once(__DIR__ . "/../../db.php");
 
 function handleCORS() {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization');
-    header('Access-Control-Max-Age: 1728000'); // Cache de 1 día
+    header('Access-Control-Max-Age: 1728000');
 
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Content-Length: 0');
@@ -16,8 +19,7 @@ function handleCORS() {
 }
 
 handleCORS();
-
-header('Content-Type: application/json'); 
+header('Content-Type: application/json');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -25,6 +27,7 @@ if ($method === "GET") {
     $registro_proceso_id = $_GET["registro_proceso_id"] ?? null;
 
     if (!$registro_proceso_id) {
+        http_response_code(400);
         echo json_encode(["error" => "registro_proceso_id es requerido"]);
         exit;
     }
@@ -37,6 +40,7 @@ if ($method === "GET") {
         $eventos = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($eventos);
     } catch (Exception $e) {
+        http_response_code(500);
         echo json_encode(["error" => "Error al obtener historial: " . $e->getMessage()]);
     }
     exit;
@@ -49,6 +53,7 @@ if ($method === "POST") {
     $fecha = $data["fecha"] ?? null;
 
     if (!$registro_proceso_id || !$evento || !$fecha) {
+        http_response_code(400);
         echo json_encode(["error" => "Faltan datos obligatorios"]);
         exit;
     }
@@ -59,6 +64,7 @@ if ($method === "POST") {
         $stmt->execute();
         echo json_encode(["message" => "Evento agregado correctamente"]);
     } catch (Exception $e) {
+        http_response_code(500);
         echo json_encode(["error" => "Error al insertar evento: " . $e->getMessage()]);
     }
     exit;
@@ -68,35 +74,34 @@ if ($method === "DELETE") {
     $id = $_GET["id"] ?? null;
 
     if (!$id) {
+        http_response_code(400);
         echo json_encode(["error" => "ID es requerido"]);
         exit;
     }
 
     try {
-        // Verificar si el registro existe
         $stmt = $conn->prepare("SELECT id FROM historial_registro_procesos WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
+
         if ($result->num_rows === 0) {
+            http_response_code(404);
             echo json_encode(["error" => "Evento no encontrado"]);
             exit;
         }
 
-        // Eliminar el evento
         $stmt = $conn->prepare("DELETE FROM historial_registro_procesos WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
         echo json_encode(["message" => "Evento eliminado correctamente"]);
     } catch (Exception $e) {
+        http_response_code(500);
         echo json_encode(["error" => "Error al eliminar evento: " . $e->getMessage()]);
     }
     exit;
 }
 
-// Si llegamos aquí, significa que el método no es permitido
-http_response_code(405);  // Método no permitido
+http_response_code(405);
 echo json_encode(["error" => "Método no permitido"]);
-
-?>

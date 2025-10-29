@@ -1,7 +1,417 @@
-[2025-04-04 05:06:49] Solicitud recibida: GET
-[2025-04-04 05:06:49]  M茅todo no permitido.
-[2025-04-04 05:11:09] Solicitud recibida: POST
-[2025-04-04 05:11:09] 馃搫 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"C:\\xampp\\tmp\\php75AD.tmp","error":0,"size":222843}
-[2025-04-04 05:11:09]  Tipo MIME detectado: application/pdf
-[2025-04-04 05:11:09] 馃搧 Carpeta creada: C:\xampp\htdocs\gantt-backend\api\upload/../public/uploads/
-[2025-04-04 05:11:09]  Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ef4dcd16cef.pdf
+[2025-04-02 08:17:58] Solicitud recibida: GET
+[2025-04-02 08:17:58] ❌ Método no permitido.
+[2025-04-02 08:18:41] Solicitud recibida: GET
+[2025-04-02 08:18:41] ❌ Método no permitido.
+[2025-04-02 21:14:42] Solicitud recibida: GET
+[2025-04-02 21:14:42] ❌ Método no permitido.
+[2025-04-04 03:17:36] Solicitud recibida: POST
+[2025-04-04 03:17:36] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpnikXwo","error":0,"size":222843}
+[2025-04-04 03:17:36] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 03:17:36] 📁 Carpeta creada: /home/ganttmep/public_html/gantt-backend/api/upload/../public/uploads/
+[2025-04-04 03:17:36] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ef4f50e1e8c.pdf
+[2025-04-04 03:19:05] Solicitud recibida: POST
+[2025-04-04 03:19:05] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phppGqgFs","error":0,"size":222843}
+[2025-04-04 03:19:05] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 03:19:05] ✅ Archivo subido exitosamente a /gantt-backend/public/uploads/documento-1-67ef4fa94c9e6.pdf
+[2025-04-04 03:27:08] Solicitud recibida: POST
+[2025-04-04 03:27:08] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpqB07A8","error":0,"size":222843}
+[2025-04-04 03:27:08] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 03:27:08] ✅ Archivo subido exitosamente a /uploads/documento-1-67ef518cae4be.pdf
+[2025-04-04 15:29:53] Solicitud recibida: POST
+[2025-04-04 15:29:53] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpHrpVaw","error":0,"size":222843}
+[2025-04-04 15:29:53] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 15:29:53] ✅ Archivo subido exitosamente a /uploads/documento-9-67effaf1e882a.pdf
+[2025-04-04 15:49:40] Solicitud recibida: POST
+[2025-04-04 15:49:40] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpBYHcXj","error":0,"size":222843}
+[2025-04-04 15:49:40] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 15:49:40] ✅ Archivo subido exitosamente a /uploads/documento-1-67efff94ba591.pdf
+[2025-04-04 16:54:42] Solicitud recibida: POST
+[2025-04-04 16:54:42] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phph9e1oy","error":0,"size":222843}
+[2025-04-04 16:54:42] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 16:54:42] ✅ Archivo subido exitosamente a /uploads/documento-1-67f00ed2ab4d7.pdf
+[2025-04-04 17:15:39] Solicitud recibida: POST
+[2025-04-04 17:15:39] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpqrSuAd","error":0,"size":222843}
+[2025-04-04 17:15:39] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 17:15:39] ✅ Archivo subido exitosamente a /uploads/documento-1-67f013bbf19f9.pdf
+[2025-04-04 17:15:42] Solicitud recibida: POST
+[2025-04-04 17:15:42] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpRWYFcG","error":0,"size":222843}
+[2025-04-04 17:15:42] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 17:15:42] ✅ Archivo subido exitosamente a /uploads/documento-3-67f013be22536.pdf
+[2025-04-04 17:21:53] Solicitud recibida: POST
+[2025-04-04 17:21:53] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/php1GrySN","error":0,"size":222843}
+[2025-04-04 17:21:53] 📎 Tipo MIME detectado: application/pdf
+[2025-04-04 17:21:53] ✅ Archivo subido exitosamente a /uploads/documento-1-67f015317cbb0.pdf
+[2025-04-09 01:48:12] Solicitud recibida: POST
+[2025-04-09 01:48:12] 📄 Archivo recibido: {"name":"Documentacion_Gantt_2 (2).pdf","full_path":"Documentacion_Gantt_2 (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpJkdRmg","error":0,"size":222843}
+[2025-04-09 01:48:12] 📎 Tipo MIME detectado: application/pdf
+[2025-04-09 01:48:12] ✅ Archivo subido exitosamente a /uploads/documento-1-67f5d1dce3a81.pdf
+[2025-07-02 21:55:02] Solicitud recibida: POST
+[2025-07-02 21:55:02] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-02 21:55:02] ❌ Error al subir el archivo. Código: 1
+[2025-07-02 21:57:38] Solicitud recibida: POST
+[2025-07-02 21:57:38] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-02 21:57:38] ❌ Error al subir el archivo. Código: 1
+[2025-07-02 22:04:59] Solicitud recibida: POST
+[2025-07-02 22:04:59] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-02 22:04:59] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 04:35:34] Solicitud recibida: POST
+[2025-07-03 04:35:34] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpya34kJ","error":0,"size":744171}
+[2025-07-03 04:35:34] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 04:35:34] ✅ Archivo subido exitosamente a /uploads/documento-10-686608968929a.pdf
+[2025-07-03 04:36:36] Solicitud recibida: POST
+[2025-07-03 04:36:36] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpnoFTLL","error":0,"size":744171}
+[2025-07-03 04:36:36] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 04:36:36] ✅ Archivo subido exitosamente a /uploads/documento-11-686608d4c6298.pdf
+[2025-07-03 04:49:06] Solicitud recibida: POST
+[2025-07-03 04:49:06] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpPHdbrq","error":0,"size":744171}
+[2025-07-03 04:49:06] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 04:49:06] ✅ Archivo subido exitosamente a /uploads/documento-12-68660bc2a3e51.pdf
+[2025-07-03 04:55:32] Solicitud recibida: POST
+[2025-07-03 04:55:32] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpi4niZs","error":0,"size":744171}
+[2025-07-03 04:55:32] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 04:55:32] ✅ Archivo subido exitosamente a /uploads/documento-12-68660d44838e6.pdf
+[2025-07-03 05:02:36] Solicitud recibida: POST
+[2025-07-03 05:02:36] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpcxtO3p","error":0,"size":744171}
+[2025-07-03 05:02:36] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 05:02:36] ✅ Archivo subido exitosamente a /uploads/documento-10-68660eec63490.pdf
+[2025-07-03 05:04:43] Solicitud recibida: POST
+[2025-07-03 05:04:43] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpPOYkqj","error":0,"size":744171}
+[2025-07-03 05:04:43] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 05:04:43] ✅ Archivo subido exitosamente a /uploads/documento-10-68660f6b89d2c.pdf
+[2025-07-03 05:08:35] Solicitud recibida: POST
+[2025-07-03 05:08:35] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpA84vZ5","error":0,"size":744171}
+[2025-07-03 05:08:35] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 05:08:35] ✅ Archivo subido exitosamente a /uploads/documento-10-686610536f858.pdf
+[2025-07-03 05:09:15] Solicitud recibida: POST
+[2025-07-03 05:09:15] 📄 Archivo recibido: {"name":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","full_path":"annotated-Versi%C3%B3n%20Final%20Aprobada%20y%20Hoja%20de%20Aprobaci%C3%B3n%20del%20Anteproyecto (2).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpHUPtge","error":0,"size":744171}
+[2025-07-03 05:09:15] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 05:09:15] ✅ Archivo subido exitosamente a /uploads/documento-12-6866107b4b868.pdf
+[2025-07-03 22:17:53] Solicitud recibida: POST
+[2025-07-03 22:17:53] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-03 22:17:53] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 22:18:36] Solicitud recibida: POST
+[2025-07-03 22:18:36] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-03 22:18:36] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 22:19:08] Solicitud recibida: POST
+[2025-07-03 22:19:08] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-03 22:19:08] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 22:23:05] Solicitud recibida: GET
+[2025-07-03 22:23:05] ❌ Método no permitido.
+[2025-07-03 22:23:42] Solicitud recibida: GET
+[2025-07-03 22:23:42] ❌ Método no permitido.
+[2025-07-03 22:28:40] Solicitud recibida: GET
+[2025-07-03 22:28:40] ❌ Método no permitido.
+[2025-07-03 22:35:19] Solicitud recibida: POST
+[2025-07-03 22:35:19] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-03 22:35:19] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 22:36:05] Solicitud recibida: POST
+[2025-07-03 22:36:05] 📄 Archivo recibido: {"name":"cedula.pdf","full_path":"cedula.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpiEsn33","error":0,"size":269936}
+[2025-07-03 22:36:05] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 22:36:05] ✅ Archivo subido exitosamente a /uploads/documento-12-686705d5ea071.pdf
+[2025-07-03 22:36:37] Solicitud recibida: POST
+[2025-07-03 22:36:37] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phph272dF","error":0,"size":432974}
+[2025-07-03 22:36:37] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 22:36:37] ✅ Archivo subido exitosamente a /uploads/documento-12-686705f584e79.pdf
+[2025-07-03 22:37:15] Solicitud recibida: POST
+[2025-07-03 22:37:15] 📄 Archivo recibido: {"name":"elc-4pager-spanish.pdf","full_path":"elc-4pager-spanish.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-03 22:37:15] ❌ Error al subir el archivo. Código: 1
+[2025-07-03 22:39:02] Solicitud recibida: POST
+[2025-07-03 22:39:02] 📄 Archivo recibido: {"name":"cedula.pdf","full_path":"cedula.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpr3RyVa","error":0,"size":269936}
+[2025-07-03 22:39:02] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 22:39:02] ✅ Archivo subido exitosamente a /uploads/documento-12-686706861c957.pdf
+[2025-07-03 22:39:21] Solicitud recibida: POST
+[2025-07-03 22:39:21] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php6zneAc","error":0,"size":432974}
+[2025-07-03 22:39:21] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 22:39:21] ✅ Archivo subido exitosamente a /uploads/documento-65-68670699bb41c.pdf
+[2025-07-03 23:21:22] Solicitud recibida: POST
+[2025-07-03 23:21:22] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpKvzPoF","error":0,"size":432974}
+[2025-07-03 23:21:22] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 23:21:22] ✅ Archivo subido exitosamente a /uploads/documento-65-6867107241c77.pdf
+[2025-07-03 23:26:27] Solicitud recibida: POST
+[2025-07-03 23:26:27] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpbN0SNo","error":0,"size":432974}
+[2025-07-03 23:26:27] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 23:26:27] ✅ Archivo subido exitosamente a /uploads/documento-59-686711a360369.pdf
+[2025-07-03 23:32:03] Solicitud recibida: POST
+[2025-07-03 23:32:03] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpYWwpsW","error":0,"size":432974}
+[2025-07-03 23:32:03] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 23:32:03] ✅ Archivo subido exitosamente a /uploads/documento-65-686712f3b95f9.pdf
+[2025-07-03 23:35:47] Solicitud recibida: POST
+[2025-07-03 23:35:47] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phphEUGwf","error":0,"size":432974}
+[2025-07-03 23:35:47] 📎 Tipo MIME detectado: application/pdf
+[2025-07-03 23:35:47] ✅ Archivo subido exitosamente a /uploads/documento-65-686713d3d2c78.pdf
+[2025-07-04 21:27:54] Solicitud recibida: POST
+[2025-07-04 21:27:54] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phprjzUO1","error":0,"size":432974}
+[2025-07-04 21:27:54] 📎 Tipo MIME detectado: application/pdf
+[2025-07-04 21:27:54] ✅ Archivo subido exitosamente a /uploads/documento-66-6868475a38065.pdf
+[2025-07-07 20:55:52] Solicitud recibida: POST
+[2025-07-07 20:55:52] 📄 Archivo recibido: {"name":"Informe I Visita Expertos Proyecto Escuela Normal de M\u00e9xico (1) 21 05 25.pdf","full_path":"Informe I Visita Expertos Proyecto Escuela Normal de M\u00e9xico (1) 21 05 25.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-07 20:55:52] ❌ Error al subir el archivo. Código: 1
+[2025-07-07 20:56:06] Solicitud recibida: POST
+[2025-07-07 20:56:06] 📄 Archivo recibido: {"name":"Informe I Visita Expertos Proyecto Escuela Normal de M\u00e9xico (1) 21 05 25.pdf","full_path":"Informe I Visita Expertos Proyecto Escuela Normal de M\u00e9xico (1) 21 05 25.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-07 20:56:06] ❌ Error al subir el archivo. Código: 1
+[2025-07-07 20:57:00] Solicitud recibida: POST
+[2025-07-07 20:57:00] 📄 Archivo recibido: {"name":"ACIII-25-146_ Donacion Contenedor-MEP firmada (1).pdf","full_path":"ACIII-25-146_ Donacion Contenedor-MEP firmada (1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpGSgb2o","error":0,"size":333111}
+[2025-07-07 20:57:00] 📎 Tipo MIME detectado: application/pdf
+[2025-07-07 20:57:00] ✅ Archivo subido exitosamente a /uploads/documento-67-686c349c69528.pdf
+[2025-07-09 21:27:51] Solicitud recibida: POST
+[2025-07-09 21:27:51] 📄 Archivo recibido: {"name":"Brochure-Diplomado UPAZ mayo-noviembre 2025.pdf","full_path":"Brochure-Diplomado UPAZ mayo-noviembre 2025.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-09 21:27:51] ❌ Error al subir el archivo. Código: 1
+[2025-07-10 17:37:43] Solicitud recibida: POST
+[2025-07-10 17:37:43] 📄 Archivo recibido: {"name":"1era reuni\u00f3n bilateral Por definir.pdf","full_path":"1era reuni\u00f3n bilateral Por definir.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpMF1axm","error":0,"size":84379}
+[2025-07-10 17:37:43] 📎 Tipo MIME detectado: application/pdf
+[2025-07-10 17:37:43] ✅ Archivo subido exitosamente a /uploads/documento-21-686ffa67f10c8.pdf
+[2025-07-21 14:13:56] Solicitud recibida: POST
+[2025-07-21 14:13:56] 📄 Archivo recibido: {"name":"CONVOCATORIA REP\u00daBLICA DE CHILE 2025 (Anexo 1).pdf","full_path":"CONVOCATORIA REP\u00daBLICA DE CHILE 2025 (Anexo 1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/php8jNpgR","error":0,"size":269884}
+[2025-07-21 14:13:56] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:13:56] ✅ Archivo subido exitosamente a /uploads/documento-21-687e4b2452f70.pdf
+[2025-07-21 14:18:57] Solicitud recibida: POST
+[2025-07-21 14:18:57] 📄 Archivo recibido: {"name":"Invitaci\u00f3n Ceibal.pdf","full_path":"Invitaci\u00f3n Ceibal.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpgOwdzG","error":0,"size":43422}
+[2025-07-21 14:18:57] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:18:57] ✅ Archivo subido exitosamente a /uploads/documento-23-687e4c5105a83.pdf
+[2025-07-21 14:23:39] Solicitud recibida: POST
+[2025-07-21 14:23:39] 📄 Archivo recibido: {"name":"Contectando futuros CEIBAL .pdf","full_path":"Contectando futuros CEIBAL .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpzmID3u","error":0,"size":87622}
+[2025-07-21 14:23:39] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:23:39] ✅ Archivo subido exitosamente a /uploads/documento-26-687e4d6ba3a8c.pdf
+[2025-07-21 14:29:12] Solicitud recibida: POST
+[2025-07-21 14:29:12] 📄 Archivo recibido: {"name":"Convocatoria Heinrich.pdf","full_path":"Convocatoria Heinrich.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php99QaZr","error":0,"size":123116}
+[2025-07-21 14:29:12] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:29:12] ✅ Archivo subido exitosamente a /uploads/documento-27-687e4eb8208e1.pdf
+[2025-07-21 14:31:29] Solicitud recibida: POST
+[2025-07-21 14:31:29] 📄 Archivo recibido: {"name":"2025-1 KOICA Scholarship Progam_Guide line.pdf","full_path":"2025-1 KOICA Scholarship Progam_Guide line.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php9pHv1K","error":0,"size":237179}
+[2025-07-21 14:31:29] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:31:29] ✅ Archivo subido exitosamente a /uploads/documento-29-687e4f41369d3.pdf
+[2025-07-21 14:53:45] Solicitud recibida: POST
+[2025-07-21 14:53:45] 📄 Archivo recibido: {"name":"Costa Rica - Cambridge Capability Statement  (1).pdf","full_path":"Costa Rica - Cambridge Capability Statement  (1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phprgHPvw","error":0,"size":353983}
+[2025-07-21 14:53:46] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:53:46] ✅ Archivo subido exitosamente a /uploads/documento-41-687e547a000d9.pdf
+[2025-07-21 14:59:02] Solicitud recibida: POST
+[2025-07-21 14:59:02] 📄 Archivo recibido: {"name":"elc-monthlyenglishprograms-handout.pdf","full_path":"elc-monthlyenglishprograms-handout.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpNlo7gZ","error":0,"size":432974}
+[2025-07-21 14:59:02] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 14:59:02] ✅ Archivo subido exitosamente a /uploads/documento-42-687e55b62e1d4.pdf
+[2025-07-21 15:02:11] Solicitud recibida: POST
+[2025-07-21 15:02:11] 📄 Archivo recibido: {"name":"Presentacio__n General ICETEX -Cancilleri__a_compressed.pdf","full_path":"Presentacio__n General ICETEX -Cancilleri__a_compressed.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php2CM1uW","error":0,"size":1300823}
+[2025-07-21 15:02:11] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:02:11] ✅ Archivo subido exitosamente a /uploads/documento-43-687e567300b64.pdf
+[2025-07-21 15:07:58] Solicitud recibida: POST
+[2025-07-21 15:07:58] 📄 Archivo recibido: {"name":"Ceibal 21 07 25 Out of the box.pdf","full_path":"Ceibal 21 07 25 Out of the box.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phploqxtF","error":0,"size":40322}
+[2025-07-21 15:07:58] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:07:58] ✅ Archivo subido exitosamente a /uploads/documento-44-687e57ce1e07f.pdf
+[2025-07-21 15:12:04] Solicitud recibida: POST
+[2025-07-21 15:12:04] 📄 Archivo recibido: {"name":"AECID gen\u00e9ro .pdf","full_path":"AECID gen\u00e9ro .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpmw44LF","error":0,"size":133602}
+[2025-07-21 15:12:04] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:12:04] ✅ Archivo subido exitosamente a /uploads/documento-45-687e58c4224f1.pdf
+[2025-07-21 15:22:46] Solicitud recibida: POST
+[2025-07-21 15:22:46] 📄 Archivo recibido: {"name":"Programa IPPP (1).pdf","full_path":"Programa IPPP (1).pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:22:46] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:23:18] Solicitud recibida: POST
+[2025-07-21 15:23:18] 📄 Archivo recibido: {"name":"Programa IPPP (2).pdf","full_path":"Programa IPPP (2).pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:23:18] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:24:50] Solicitud recibida: POST
+[2025-07-21 15:24:50] 📄 Archivo recibido: {"name":"Jap\u00f3n.pdf","full_path":"Jap\u00f3n.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php0RAMIm","error":0,"size":95724}
+[2025-07-21 15:24:50] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:24:50] ✅ Archivo subido exitosamente a /uploads/documento-55-687e5bc27fbbf.pdf
+[2025-07-21 15:27:01] Solicitud recibida: POST
+[2025-07-21 15:27:01] 📄 Archivo recibido: {"name":"Programa Competencias digitales - Primer Actividad.pdf","full_path":"Programa Competencias digitales - Primer Actividad.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phplArf0K","error":0,"size":267817}
+[2025-07-21 15:27:01] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:27:01] ✅ Archivo subido exitosamente a /uploads/documento-57-687e5c454d5f4.pdf
+[2025-07-21 15:27:04] Solicitud recibida: POST
+[2025-07-21 15:27:04] 📄 Archivo recibido: {"name":"Prevenci\u00f3n de violencia a trav\u00e9s del desarrollo socioemocional. El caso de Aulas en Paz.pdf","full_path":"Prevenci\u00f3n de violencia a trav\u00e9s del desarrollo socioemocional. El caso de Aulas en Paz.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:27:04] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:32:26] Solicitud recibida: POST
+[2025-07-21 15:32:26] 📄 Archivo recibido: {"name":"JICACR-125-2025.pdf","full_path":"JICACR-125-2025.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php1yA74O","error":0,"size":699828}
+[2025-07-21 15:32:26] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:32:26] ✅ Archivo subido exitosamente a /uploads/documento-54-687e5d8a394ec.pdf
+[2025-07-21 15:34:32] Solicitud recibida: POST
+[2025-07-21 15:34:32] 📄 Archivo recibido: {"name":"Medir las desigualdades en el aprendizaje para impulsar cambios en las pol\u00edticas educativas.pdf","full_path":"Medir las desigualdades en el aprendizaje para impulsar cambios en las pol\u00edticas educativas.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpSuUS13","error":0,"size":187068}
+[2025-07-21 15:34:32] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:34:32] ✅ Archivo subido exitosamente a /uploads/documento-76-687e5e08b741e.pdf
+[2025-07-21 15:38:11] Solicitud recibida: POST
+[2025-07-21 15:38:11] 📄 Archivo recibido: {"name":"Resumen Estrategias de Manejo de Incident (1).pdf","full_path":"Resumen Estrategias de Manejo de Incident (1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/php2QYce1","error":0,"size":25624}
+[2025-07-21 15:38:11] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:38:11] ✅ Archivo subido exitosamente a /uploads/documento-61-687e5ee30cf9f.pdf
+[2025-07-21 15:40:01] Solicitud recibida: POST
+[2025-07-21 15:40:01] 📄 Archivo recibido: {"name":"Rompiendo ciclos_ prevenci\u00f3n y abordaje de la violencia en el sector de la educaci\u00f3n.pdf","full_path":"Rompiendo ciclos_ prevenci\u00f3n y abordaje de la violencia en el sector de la educaci\u00f3n.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:40:01] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:47:28] Solicitud recibida: POST
+[2025-07-21 15:47:28] 📄 Archivo recibido: {"name":"El planeamiento educativo en Am\u00e9rica Latina y el Caribe.pdf","full_path":"El planeamiento educativo en Am\u00e9rica Latina y el Caribe.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:47:28] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:52:50] Solicitud recibida: POST
+[2025-07-21 15:52:50] 📄 Archivo recibido: {"name":"Docentes_ Protagonistas Clave del Desarrollo Sostenible.pdf","full_path":"Docentes_ Protagonistas Clave del Desarrollo Sostenible.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 15:52:50] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 15:56:58] Solicitud recibida: POST
+[2025-07-21 15:56:58] 📄 Archivo recibido: {"name":"Formadoras de docentes para fortalecer la comunidad de aprendizaje sub-regional en Centroam\u00e9rica.pdf","full_path":"Formadoras de docentes para fortalecer la comunidad de aprendizaje sub-regional en Centroam\u00e9rica.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpHHohvl","error":0,"size":77971}
+[2025-07-21 15:56:58] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 15:56:58] ✅ Archivo subido exitosamente a /uploads/documento-80-687e634a177c4.pdf
+[2025-07-21 16:02:30] Solicitud recibida: POST
+[2025-07-21 16:02:30] 📄 Archivo recibido: {"name":"Conociendo la Recomendaci\u00f3n de la UNESCO sobre Educaci\u00f3n para la Paz, Derechos Humanos y Desarrollo Sostenible.pdf","full_path":"Conociendo la Recomendaci\u00f3n de la UNESCO sobre Educaci\u00f3n para la Paz, Derechos Humanos y Desarrollo Sostenible.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 16:02:30] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 16:12:14] Solicitud recibida: POST
+[2025-07-21 16:12:14] 📄 Archivo recibido: {"name":"Formadoras de docentes.pdf","full_path":"Formadoras de docentes.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php2I5iwI","error":0,"size":77971}
+[2025-07-21 16:12:14] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:12:14] ✅ Archivo subido exitosamente a /uploads/documento-39-687e66de2201e.pdf
+[2025-07-21 16:16:42] Solicitud recibida: POST
+[2025-07-21 16:16:42] 📄 Archivo recibido: {"name":"Aulas en Paz.pdf","full_path":"Aulas en Paz.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 16:16:42] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 16:17:44] Solicitud recibida: POST
+[2025-07-21 16:17:44] 📄 Archivo recibido: {"name":"Aulas de paz 2.pdf","full_path":"Aulas de paz 2.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php46FvlA","error":0,"size":49610}
+[2025-07-21 16:17:44] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:17:44] ✅ Archivo subido exitosamente a /uploads/documento-75-687e68282596e.pdf
+[2025-07-21 16:21:41] Solicitud recibida: POST
+[2025-07-21 16:21:41] 📄 Archivo recibido: {"name":"Rompiendo ciclos.pdf","full_path":"Rompiendo ciclos.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-21 16:21:41] ❌ Error al subir el archivo. Código: 1
+[2025-07-21 16:22:33] Solicitud recibida: POST
+[2025-07-21 16:22:33] 📄 Archivo recibido: {"name":"Rompiendo ciclos v2.pdf","full_path":"Rompiendo ciclos v2.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php8QGFE5","error":0,"size":155337}
+[2025-07-21 16:22:33] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:22:33] ✅ Archivo subido exitosamente a /uploads/documento-77-687e694945ec5.pdf
+[2025-07-21 16:24:18] Solicitud recibida: POST
+[2025-07-21 16:24:18] 📄 Archivo recibido: {"name":"Planeamiento educativo .pdf","full_path":"Planeamiento educativo .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpz08elh","error":0,"size":81965}
+[2025-07-21 16:24:18] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:24:18] ✅ Archivo subido exitosamente a /uploads/documento-78-687e69b248914.pdf
+[2025-07-21 16:25:24] Solicitud recibida: POST
+[2025-07-21 16:25:24] 📄 Archivo recibido: {"name":"Docentes protagonistas.pdf","full_path":"Docentes protagonistas.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpnwYTzf","error":0,"size":109071}
+[2025-07-21 16:25:24] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:25:24] ✅ Archivo subido exitosamente a /uploads/documento-79-687e69f43c256.pdf
+[2025-07-21 16:26:48] Solicitud recibida: POST
+[2025-07-21 16:26:48] 📄 Archivo recibido: {"name":"Recomendaciones unesco .pdf","full_path":"Recomendaciones unesco .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpBD4ESA","error":0,"size":118998}
+[2025-07-21 16:26:48] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:26:48] ✅ Archivo subido exitosamente a /uploads/documento-81-687e6a483c689.pdf
+[2025-07-21 16:36:26] Solicitud recibida: POST
+[2025-07-21 16:36:26] 📄 Archivo recibido: {"name":"Discapacidad.pdf","full_path":"Discapacidad.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpN07Ncc","error":0,"size":117585}
+[2025-07-21 16:36:26] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:36:26] ✅ Archivo subido exitosamente a /uploads/documento-82-687e6c8a39b9d.pdf
+[2025-07-21 16:41:23] Solicitud recibida: POST
+[2025-07-21 16:41:23] 📄 Archivo recibido: {"name":"JICA ambiente.pdf","full_path":"JICA ambiente.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpDhdf4X","error":0,"size":85159}
+[2025-07-21 16:41:23] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:41:23] ✅ Archivo subido exitosamente a /uploads/documento-83-687e6db3442db.pdf
+[2025-07-21 16:46:20] Solicitud recibida: POST
+[2025-07-21 16:46:20] 📄 Archivo recibido: {"name":"Convenio pregado Brasil.pdf","full_path":"Convenio pregado Brasil.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpIehFRX","error":0,"size":75985}
+[2025-07-21 16:46:20] 📎 Tipo MIME detectado: application/pdf
+[2025-07-21 16:46:20] ✅ Archivo subido exitosamente a /uploads/documento-84-687e6edc66f0a.pdf
+[2025-07-28 13:38:34] Solicitud recibida: POST
+[2025-07-28 13:38:34] 📄 Archivo recibido: {"name":"Diplomado de Cibersegurdiad.pdf","full_path":"Diplomado de Cibersegurdiad.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpVhvecA","error":0,"size":160749}
+[2025-07-28 13:38:34] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 13:38:34] ✅ Archivo subido exitosamente a /uploads/documento-85-68877d5a68d53.pdf
+[2025-07-28 14:53:43] Solicitud recibida: POST
+[2025-07-28 14:53:43] 📄 Archivo recibido: {"name":"SEDI-LCP - NV-11-25 - Costa Rica Invitacio\u00ecn diseminacio\u00ecn Lanzamiento LCP ING CA (2025-01-31)-1 (1).pdf","full_path":"SEDI-LCP - NV-11-25 - Costa Rica Invitacio\u00ecn diseminacio\u00ecn Lanzamiento LCP ING CA (2025-01-31)-1 (1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpSBmut3","error":0,"size":218559}
+[2025-07-28 14:53:43] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 14:53:43] ✅ Archivo subido exitosamente a /uploads/documento-33-68878ef740887.pdf
+[2025-07-28 17:42:42] Solicitud recibida: POST
+[2025-07-28 17:42:42] 📄 Archivo recibido: {"name":"Becas de M\u00e9xico .pdf","full_path":"Becas de M\u00e9xico .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpIAqyfc","error":0,"size":62483}
+[2025-07-28 17:42:42] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 17:42:42] ✅ Archivo subido exitosamente a /uploads/documento-87-6887b6925bc5c.pdf
+[2025-07-28 18:20:02] Solicitud recibida: POST
+[2025-07-28 18:20:02] 📄 Archivo recibido: {"name":"II Programa de Intercambio de Buenas Pr\u00e1cticas 2025.pdf","full_path":"II Programa de Intercambio de Buenas Pr\u00e1cticas 2025.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phprEBZQS","error":0,"size":427723}
+[2025-07-28 18:20:02] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 18:20:02] ✅ Archivo subido exitosamente a /uploads/documento-88-6887bf525006a.pdf
+[2025-07-28 19:41:53] Solicitud recibida: POST
+[2025-07-28 19:41:53] 📄 Archivo recibido: {"name":"Convocatoria_Abierta_Becas_URL (1).pdf","full_path":"Convocatoria_Abierta_Becas_URL (1).pdf","type":"application\/pdf","tmp_name":"\/tmp\/phprt6K5I","error":0,"size":140093}
+[2025-07-28 19:41:53] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 19:41:53] ✅ Archivo subido exitosamente a /uploads/documento-89-6887d281d02f6.pdf
+[2025-07-28 20:34:54] Solicitud recibida: POST
+[2025-07-28 20:34:54] 📄 Archivo recibido: {"name":"CONVENIO MEP - EMBAJADA FRANCESA - ASOCIACION FRANCO COSTARRICENSE (1) (3).pdf","full_path":"CONVENIO MEP - EMBAJADA FRANCESA - ASOCIACION FRANCO COSTARRICENSE (1) (3).pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-28 20:34:54] ❌ Error al subir el archivo. Código: 1
+[2025-07-28 20:35:57] Solicitud recibida: POST
+[2025-07-28 20:35:57] 📄 Archivo recibido: {"name":"Programa de asistentes.pdf","full_path":"Programa de asistentes.pdf","type":"","tmp_name":"","error":1,"size":0}
+[2025-07-28 20:35:57] ❌ Error al subir el archivo. Código: 1
+[2025-07-28 20:54:17] Solicitud recibida: POST
+[2025-07-28 20:54:17] 📄 Archivo recibido: {"name":"CONVENIO MEP CENECOOP.pdf","full_path":"CONVENIO MEP CENECOOP.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpY8xplR","error":0,"size":504028}
+[2025-07-28 20:54:17] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 20:54:17] ✅ Archivo subido exitosamente a /uploads/documento-23-6887e3791c90c.pdf
+[2025-07-28 20:55:57] Solicitud recibida: POST
+[2025-07-28 20:55:57] 📄 Archivo recibido: {"name":"CONVENIO MEP JONHSO&JONHSON.pdf","full_path":"CONVENIO MEP JONHSO&JONHSON.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpj08Kon","error":0,"size":549762}
+[2025-07-28 20:55:57] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 20:55:57] ✅ Archivo subido exitosamente a /uploads/documento-20-6887e3dd5e51c.pdf
+[2025-07-28 20:56:29] Solicitud recibida: POST
+[2025-07-28 20:56:29] 📄 Archivo recibido: {"name":"CONVENIO MEP-FUNDACI\u00d3N ZAMORA TER\u00c1N.pdf","full_path":"CONVENIO MEP-FUNDACI\u00d3N ZAMORA TER\u00c1N.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpBPE14X","error":0,"size":1051170}
+[2025-07-28 20:56:29] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 20:56:29] ✅ Archivo subido exitosamente a /uploads/documento-15-6887e3fd93dbb.pdf
+[2025-07-28 21:00:46] Solicitud recibida: POST
+[2025-07-28 21:00:46] 📄 Archivo recibido: {"name":"Adenda Edun\u00e1mica.pdf","full_path":"Adenda Edun\u00e1mica.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpMG17qF","error":0,"size":529985}
+[2025-07-28 21:00:46] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:00:46] ✅ Archivo subido exitosamente a /uploads/documento-18-6887e4fe30c75.pdf
+[2025-07-28 21:01:05] Solicitud recibida: POST
+[2025-07-28 21:01:05] 📄 Archivo recibido: {"name":"CONVENIO  EDUGUIARE .pdf","full_path":"CONVENIO  EDUGUIARE .pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpvTfY6Q","error":0,"size":437996}
+[2025-07-28 21:01:05] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:01:05] ✅ Archivo subido exitosamente a /uploads/documento-12-6887e511d5be2.pdf
+[2025-07-28 21:01:31] Solicitud recibida: POST
+[2025-07-28 21:01:31] 📄 Archivo recibido: {"name":"CONVENIO MEP-FUNDACI\u00d3N MONGE .pdf","full_path":"CONVENIO MEP-FUNDACI\u00d3N MONGE .pdf","type":"application\/pdf","tmp_name":"\/tmp\/php68xhyZ","error":0,"size":460507}
+[2025-07-28 21:01:31] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:01:31] ✅ Archivo subido exitosamente a /uploads/documento-22-6887e52b89460.pdf
+[2025-07-28 21:03:06] Solicitud recibida: POST
+[2025-07-28 21:03:06] 📄 Archivo recibido: {"name":"CONVENIO MEP YO EMPRENDEDOR.pdf","full_path":"CONVENIO MEP YO EMPRENDEDOR.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpraNsxe","error":0,"size":503690}
+[2025-07-28 21:03:06] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:03:06] ✅ Archivo subido exitosamente a /uploads/documento-13-6887e58abe938.pdf
+[2025-07-28 21:03:12] Solicitud recibida: POST
+[2025-07-28 21:03:12] 📄 Archivo recibido: {"name":"CONVENIO MARCO  CCC.pdf","full_path":"CONVENIO MARCO  CCC.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phprXFpOn","error":0,"size":487679}
+[2025-07-28 21:03:12] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:03:12] ✅ Archivo subido exitosamente a /uploads/documento-14-6887e5902b176.pdf
+[2025-07-28 21:04:22] Solicitud recibida: POST
+[2025-07-28 21:04:22] 📄 Archivo recibido: {"name":"Adenda Colgate Palmolive.pdf","full_path":"Adenda Colgate Palmolive.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpRDTPyU","error":0,"size":275612}
+[2025-07-28 21:04:22] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:04:22] ✅ Archivo subido exitosamente a /uploads/documento-16-6887e5d6c0a3f.pdf
+[2025-07-28 21:05:12] Solicitud recibida: POST
+[2025-07-28 21:05:12] 📄 Archivo recibido: {"name":"Convenio MEP-ASOQUEM 2024.pdf","full_path":"Convenio MEP-ASOQUEM 2024.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpkFTEsW","error":0,"size":488420}
+[2025-07-28 21:05:12] 📎 Tipo MIME detectado: application/pdf
+[2025-07-28 21:05:12] ✅ Archivo subido exitosamente a /uploads/documento-21-6887e608da950.pdf
+[2025-07-29 04:57:13] Solicitud recibida: POST
+[2025-07-29 04:57:13] 📄 Archivo recibido: {"name":"CONVENIO ESPEC\u00cdFICO ENTRE EL MEP Y CENFOTEC - oficial firma.pdf","full_path":"CONVENIO ESPEC\u00cdFICO ENTRE EL MEP Y CENFOTEC - oficial firma.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php01UFJY","error":0,"size":537916}
+[2025-07-29 04:57:13] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 04:57:13] ✅ Archivo subido exitosamente a /uploads/documento-24-688854a917288.pdf
+[2025-07-29 05:13:40] Solicitud recibida: POST
+[2025-07-29 05:13:40] 📄 Archivo recibido: {"name":"CONVENIO MEP ICG (COLEGIO UNIV BOSTON) PF.pdf","full_path":"CONVENIO MEP ICG (COLEGIO UNIV BOSTON) PF.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpoe2lIe","error":0,"size":515401}
+[2025-07-29 05:13:40] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 05:13:40] ✅ Archivo subido exitosamente a /uploads/documento-25-6888588463ef7.pdf
+[2025-07-29 14:13:31] Solicitud recibida: POST
+[2025-07-29 14:13:31] 📄 Archivo recibido: {"name":"CONVENIO MARCO DE COOPERACIO\u0301N ENTRE EL MEP y MINAE-firmado.pdf","full_path":"CONVENIO MARCO DE COOPERACIO\u0301N ENTRE EL MEP y MINAE-firmado.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpWIvWsF","error":0,"size":557148}
+[2025-07-29 14:13:31] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 14:13:31] ✅ Archivo subido exitosamente a /uploads/documento-26-6888d70b7cf18.pdf
+[2025-07-29 14:37:31] Solicitud recibida: POST
+[2025-07-29 14:37:31] 📄 Archivo recibido: {"name":"PROPUESTA OFICIAL DE LA ADENDA UNO DE PR\u00d3RROGA - MEP - BOMBEROS- PARA FIRMAS.pdf","full_path":"PROPUESTA OFICIAL DE LA ADENDA UNO DE PR\u00d3RROGA - MEP - BOMBEROS- PARA FIRMAS.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpPojTPA","error":0,"size":569873}
+[2025-07-29 14:37:31] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 14:37:31] ✅ Archivo subido exitosamente a /uploads/documento-27-6888dcab0570f.pdf
+[2025-07-29 14:51:32] Solicitud recibida: POST
+[2025-07-29 14:51:32] 📄 Archivo recibido: {"name":"Convenio GREEN TRUST FOUNDATION.pdf","full_path":"Convenio GREEN TRUST FOUNDATION.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpFH3smg","error":0,"size":619222}
+[2025-07-29 14:51:32] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 14:51:32] ✅ Archivo subido exitosamente a /uploads/documento-17-6888dff4d749a.pdf
+[2025-07-29 15:53:19] Solicitud recibida: POST
+[2025-07-29 15:53:19] 📄 Archivo recibido: {"name":"CRI-00927.25.pdf","full_path":"CRI-00927.25.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpp1JEA1","error":0,"size":1400628}
+[2025-07-29 15:53:19] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 15:53:19] ✅ Archivo subido exitosamente a /uploads/documento-90-6888ee6f3f684.pdf
+[2025-07-29 15:54:33] Solicitud recibida: POST
+[2025-07-29 15:54:33] 📄 Archivo recibido: {"name":"Invitacio\u0301n 8\u00b0 curso anual DIH 2025 V.14.07.2025.pdf","full_path":"Invitacio\u0301n 8\u00b0 curso anual DIH 2025 V.14.07.2025.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpk8N60e","error":0,"size":72628}
+[2025-07-29 15:54:33] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 15:54:33] ✅ Archivo subido exitosamente a /uploads/documento-90-6888eeb91ba6e.pdf
+[2025-07-29 16:05:32] Solicitud recibida: POST
+[2025-07-29 16:05:32] 📄 Archivo recibido: {"name":"Academia BID.pdf","full_path":"Academia BID.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php4Tww6j","error":0,"size":43836}
+[2025-07-29 16:05:32] 📎 Tipo MIME detectado: application/pdf
+[2025-07-29 16:05:32] ✅ Archivo subido exitosamente a /uploads/documento-34-6888f14c4514b.pdf
+[2025-07-30 14:45:58] Solicitud recibida: POST
+[2025-07-30 14:45:58] 📄 Archivo recibido: {"name":"Convenio Municipalidad de Alajuela ( versi\u00f3n final) (1) (002).pdf","full_path":"Convenio Municipalidad de Alajuela ( versi\u00f3n final) (1) (002).pdf","type":"application\/pdf","tmp_name":"\/tmp\/php3JL1Jn","error":0,"size":439307}
+[2025-07-30 14:45:58] 📎 Tipo MIME detectado: application/pdf
+[2025-07-30 14:45:58] ✅ Archivo subido exitosamente a /uploads/documento-28-688a3026af023.pdf
+[2025-09-05 13:48:19] Solicitud recibida: POST
+[2025-09-05 13:48:19] 📄 Archivo recibido: {"name":"Jap\u00f3n 2.pdf","full_path":"Jap\u00f3n 2.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpzHnBBu","error":0,"size":56031}
+[2025-09-05 13:48:19] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 13:48:19] ✅ Archivo subido exitosamente a /uploads/documento-91-68baea237e83d.pdf
+[2025-09-05 13:53:37] Solicitud recibida: POST
+[2025-09-05 13:53:37] 📄 Archivo recibido: {"name":"Embajada Britanica.pdf","full_path":"Embajada Britanica.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php7lkkoK","error":0,"size":88610}
+[2025-09-05 13:53:37] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 13:53:37] ✅ Archivo subido exitosamente a /uploads/documento-92-68baeb618f5e8.pdf
+[2025-09-05 14:01:05] Solicitud recibida: POST
+[2025-09-05 14:01:05] 📄 Archivo recibido: {"name":"Becas de LATAM.pdf","full_path":"Becas de LATAM.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpeVe77L","error":0,"size":64626}
+[2025-09-05 14:01:05] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 14:01:05] ✅ Archivo subido exitosamente a /uploads/documento-93-68baed2147e48.pdf
+[2025-09-05 14:08:02] Solicitud recibida: POST
+[2025-09-05 14:08:02] 📄 Archivo recibido: {"name":"Becas STEAM.pdf","full_path":"Becas STEAM.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php24C6O8","error":0,"size":148707}
+[2025-09-05 14:08:02] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 14:08:02] ✅ Archivo subido exitosamente a /uploads/documento-95-68baeec2b0128.pdf
+[2025-09-05 14:14:38] Solicitud recibida: POST
+[2025-09-05 14:14:38] 📄 Archivo recibido: {"name":"ECR-WDC-119-2025 Ayudamemoria Perkins.pdf","full_path":"ECR-WDC-119-2025 Ayudamemoria Perkins.pdf","type":"application\/pdf","tmp_name":"\/tmp\/phpFzLNbD","error":0,"size":629479}
+[2025-09-05 14:14:38] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 14:14:38] ✅ Archivo subido exitosamente a /uploads/documento-96-68baf04e2e9b6.pdf
+[2025-09-05 14:17:56] Solicitud recibida: POST
+[2025-09-05 14:17:56] 📄 Archivo recibido: {"name":"OEI Becas.pdf","full_path":"OEI Becas.pdf","type":"application\/pdf","tmp_name":"\/tmp\/php0FERA7","error":0,"size":55548}
+[2025-09-05 14:17:56] 📎 Tipo MIME detectado: application/pdf
+[2025-09-05 14:17:56] ✅ Archivo subido exitosamente a /uploads/documento-97-68baf1144c368.pdf
+[2025-10-28 22:28:31] Solicitud recibida: GET
+[2025-10-28 22:28:31] ❌ Método no permitido.

@@ -1,10 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// ✅ Corrección de la ruta para db.php
+include_once(__DIR__ . "/../../db.php");
+
 function handleCORS() {
-    header('Access-Control-Allow-Origin: *'); // Puedes ajustar el origen a tus necesidades
+    header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization');
-    header('Access-Control-Max-Age: 1728000'); // Cache de 1 d铆a
-
+    header('Access-Control-Max-Age: 1728000');
+    
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Content-Length: 0');
         header('Content-Type: text/plain');
@@ -14,14 +21,6 @@ function handleCORS() {
 
 handleCORS();
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
-
-include_once("../../db.php");
 
 function formatDateForMariaDB($date) {
     return $date ? date("Y-m-d H:i:s", strtotime($date)) : null;
@@ -29,14 +28,18 @@ function formatDateForMariaDB($date) {
 
 $method = $_SERVER["REQUEST_METHOD"];
 
+// === GET ===
 if ($method === "GET") {
     $result = $conn->query("SELECT * FROM registro_procesos ORDER BY fecha_inicio DESC");
     $rows = [];
-    while ($row = $result->fetch_assoc()) $rows[] = $row;
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
     echo json_encode($rows);
     exit;
 }
 
+// === POST ===
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
@@ -58,7 +61,7 @@ if ($method === "POST") {
     );
     $stmt->execute();
 
-    // Actualizar fase actual
+    // Actualizar fase actual del convenio
     $last = $conn->query("SELECT fase_registro FROM registro_procesos WHERE convenio_id = {$data["convenio_id"]} ORDER BY id DESC LIMIT 1")->fetch_assoc();
     $conn->query("UPDATE convenios SET fase_actual = '{$last["fase_registro"]}' WHERE id = {$data["convenio_id"]}");
 
@@ -66,6 +69,7 @@ if ($method === "POST") {
     exit;
 }
 
+// === PUT ===
 if ($method === "PUT") {
     $data = json_decode(file_get_contents("php://input"), true);
 
@@ -75,7 +79,6 @@ if ($method === "PUT") {
         exit;
     }
 
-    // Validar fechas correctamente
     $fecha_inicio = formatDateForMariaDB($data["fecha_inicio"] ?? null);
     $fecha_final = formatDateForMariaDB($data["fecha_final"] ?? null);
 
@@ -102,17 +105,17 @@ if ($method === "PUT") {
         exit;
     }
 
-    // Actualizar fase actual
-    $convenio_id = $data["convenio_id"] ?? null;
-    if ($convenio_id) {
-        $last = $conn->query("SELECT fase_registro FROM registro_procesos WHERE convenio_id = $convenio_id ORDER BY id DESC LIMIT 1")->fetch_assoc();
-        $conn->query("UPDATE convenios SET fase_actual = '{$last["fase_registro"]}' WHERE id = $convenio_id");
+    // Actualizar fase actual si se tiene convenio_id
+    if (isset($data["convenio_id"])) {
+        $last = $conn->query("SELECT fase_registro FROM registro_procesos WHERE convenio_id = {$data["convenio_id"]} ORDER BY id DESC LIMIT 1")->fetch_assoc();
+        $conn->query("UPDATE convenios SET fase_actual = '{$last["fase_registro"]}' WHERE id = {$data["convenio_id"]}");
     }
 
     echo json_encode(["message" => "Registro actualizado exitosamente"]);
     exit;
 }
 
+// === DELETE ===
 if ($method === "DELETE") {
     $id = $_GET["id"] ?? null;
 
@@ -122,7 +125,7 @@ if ($method === "DELETE") {
         exit;
     }
 
-    // Obtener convenio_id
+    // Obtener convenio_id del registro a eliminar
     $stmt = $conn->prepare("SELECT convenio_id FROM registro_procesos WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -140,20 +143,15 @@ if ($method === "DELETE") {
     // Eliminar registro
     $stmt = $conn->prepare("DELETE FROM registro_procesos WHERE id = ?");
     $stmt->bind_param("i", $id);
-    if (!$stmt->execute()) {
-        http_response_code(500);
-        echo json_encode(["error" => "Error al eliminar el registro"]);
-        exit;
-    }
+    $stmt->execute();
 
     // Recalcular fase actual
     $stmt = $conn->prepare("SELECT fase_registro FROM registro_procesos WHERE convenio_id = ? ORDER BY id DESC LIMIT 1");
     $stmt->bind_param("i", $convenio_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $fase = $result->num_rows > 0 ? $result->fetch_assoc()["fase_registro"] : "Negociaci贸n";
+    $fase = $result->num_rows > 0 ? $result->fetch_assoc()["fase_registro"] : "Negociación";
 
-    // Actualizar fase_actual
     $stmt = $conn->prepare("UPDATE convenios SET fase_actual = ? WHERE id = ?");
     $stmt->bind_param("si", $fase, $convenio_id);
     $stmt->execute();
@@ -162,6 +160,6 @@ if ($method === "DELETE") {
     exit;
 }
 
+// Si el método no está permitido
 http_response_code(405);
-echo json_encode(["error" => "M茅todo no permitido"]);
-?>
+echo json_encode(["error" => "Método no permitido"]);

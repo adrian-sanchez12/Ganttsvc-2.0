@@ -1,13 +1,15 @@
 <?php
+
 function handleCORS() {
-    header('Access-Control-Allow-Origin: *'); // Puedes ajustar el origen a tus necesidades
+    header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization');
-    header('Access-Control-Max-Age: 1728000'); // Cache de 1 día
+    header('Access-Control-Max-Age: 1728000');
 
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Content-Length: 0');
         header('Content-Type: text/plain');
+        http_response_code(200);
         exit();
     }
 }
@@ -18,31 +20,16 @@ include_once("../../db.php");
 
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, X-Requested-With");
-    http_response_code(200);
-    exit();
-}
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
-
-
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === "GET") {
     $convenios = $conn->query("SELECT * FROM convenios")->fetch_all(MYSQLI_ASSOC);
-
     $registros = $conn->query("SELECT convenio_id, MAX(fase_registro) as fase_actual FROM registro_procesos GROUP BY convenio_id")->fetch_all(MYSQLI_ASSOC);
-
     $totalConvenios = $conn->query("SELECT COUNT(*) AS total FROM convenios")->fetch_assoc()['total'];
     $totalCooperantes = $conn->query("SELECT COUNT(DISTINCT cooperante) AS total FROM convenios")->fetch_assoc()['total'];
 
-    // Match fases actuales
     foreach ($convenios as &$c) {
-        $c['fase_actual'] = "Negociación"; // por defecto
+        $c['fase_actual'] = "Negociación"; // Por defecto
         foreach ($registros as $r) {
             if ($r['convenio_id'] == $c['id']) {
                 $c['fase_actual'] = $r['fase_actual'];
@@ -61,8 +48,6 @@ if ($method === "GET") {
 
 if ($method === "POST") {
     $body = json_decode(file_get_contents("php://input"), true);
-
-    file_put_contents("debug_post.json", json_encode($body, JSON_PRETTY_PRINT), FILE_APPEND);
 
     $cooperante = $body["cooperante"] ?? null;
     $nombre = $body["nombre"] ?? null;
@@ -92,7 +77,6 @@ if ($method === "POST") {
     exit;
 }
 
-
 if ($method === "DELETE") {
     parse_str($_SERVER["QUERY_STRING"], $query);
     $id = $query["id"] ?? null;
@@ -111,7 +95,5 @@ if ($method === "DELETE") {
     exit;
 }
 
-http_response_code(405);  // Método no permitido
+http_response_code(405); // Método no permitido
 echo json_encode(["error" => "Método no permitido"]);
-
-?>
