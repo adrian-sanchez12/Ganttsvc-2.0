@@ -49,10 +49,15 @@ if ($method === "GET") {
 // =============================================
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true) ?? [];
+    
+    // 🔍 DEBUG: Log de datos recibidos
+    error_log("=== SOLICITUD_PRESUPUESTO POST ===");
+    error_log("Datos recibidos: " . print_r($data, true));
 
     $requeridos = ["subpartida_contratacion_id", "descripcion", "fecha_solicitud_boleto", "total_factura"];
     foreach ($requeridos as $campo) {
         if (empty($data[$campo])) {
+            error_log("❌ Campo obligatorio faltante: $campo");
             json_out(["error" => "El campo '$campo' es obligatorio"], 400);
         }
     }
@@ -68,49 +73,81 @@ if ($method === "POST") {
             estado, activo, creado_por
         ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+        // 🔍 DEBUG: Log del SQL
+        error_log("SQL: " . $sql);
+        
         $stmt = $conn->prepare($sql);
+        
+        if (!$stmt) {
+            error_log("❌ Error al preparar statement: " . $conn->error);
+            json_out(["error" => "Error al preparar statement: " . $conn->error], 500);
+        }
+        
+        // 🔍 DEBUG: Valores que se van a insertar
+        error_log("Valores a insertar:");
+        error_log("  - subpartida_contratacion_id: " . ($data["subpartida_contratacion_id"] ?? 'NULL'));
+        error_log("  - descripcion: " . ($data["descripcion"] ?? 'NULL'));
+        error_log("  - fecha_solicitud_boleto: " . ($data["fecha_solicitud_boleto"] ?? 'NULL'));
+        error_log("  - total_factura: " . ($data["total_factura"] ?? 'NULL'));
+        
+        // ✅ CORRECCIÓN: 23 parámetros, tipos correctos
         $stmt->bind_param(
-            "isssssssssssssssssssdss",
-            $data["subpartida_contratacion_id"],
-            $data["descripcion"],
+            "isssssssssssssssssdssss", // i=int, s=string, d=decimal
+            $data["subpartida_contratacion_id"],           // 1  - i
+            $data["descripcion"],                          // 2  - s
 
-            //Etapa 1: solicitud
-            $data["fecha_solicitud_boleto"],
-            $data["hora_solicitud_boleto"],
-            $data["oficio_solicitud"],
-            $data["fecha_respuesta_solicitud"],
-            $data["hora_respuesta_solicitud"],
-            $data["cumple_solicitud"],
+            // Etapa 1: solicitud
+            $data["fecha_solicitud_boleto"],               // 3  - s
+            $data["hora_solicitud_boleto"] ?? null,        // 4  - s
+            $data["oficio_solicitud"] ?? null,             // 5  - s
+            $data["fecha_respuesta_solicitud"] ?? null,    // 6  - s
+            $data["hora_respuesta_solicitud"] ?? null,     // 7  - s
+            $data["cumple_solicitud"] ?? 'Pendiente',      // 8  - s
 
-            //Etapa 2: emision
-            $data["fecha_solicitud_emision"],
-            $data["hora_solicitud_emision"],
-            $data["oficio_emision"],
-            $data["fecha_respuesta_emision"],
-            $data["hora_respuesta_emision"],
-            $data["cumple_emision"],
+            // Etapa 2: emision
+            $data["fecha_solicitud_emision"] ?? null,      // 9  - s
+            $data["hora_solicitud_emision"] ?? null,       // 10 - s
+            $data["oficio_emision"] ?? null,               // 11 - s
+            $data["fecha_respuesta_emision"] ?? null,      // 12 - s
+            $data["hora_respuesta_emision"] ?? null,       // 13 - s
+            $data["cumple_emision"] ?? 'Pendiente',        // 14 - s
 
-            //Etapa 3: recibido conforme
-            $data["fecha_recibido_conforme"],
-            $data["hora_recibido_conforme"],
-            $data["oficio_recepcion"],
+            // Etapa 3: recibido conforme
+            $data["fecha_recibido_conforme"] ?? null,      // 15 - s
+            $data["hora_recibido_conforme"] ?? null,       // 16 - s
+            $data["oficio_recepcion"] ?? null,             // 17 - s
 
-            //Etapa 4: facturación
-            $data["numero_factura"],
-            $data["total_factura"],
+            // Etapa 4: facturación
+            $data["numero_factura"] ?? null,               // 18 - s
+            $data["total_factura"],                        // 19 - d (decimal)
 
-            //Etapa 5: entrega a Dirección
-            $data["fecha_entrega_direccion"],
+            // Etapa 5: entrega a Dirección
+            $data["fecha_entrega_direccion"] ?? null,      // 20 - s
             
-            //Estado y metadatos
-            $data["estado"],
-            $data["activo"] ?? 1,
-            $data["creado_por"]
+            // Estado y metadatos
+            $data["estado"] ?? 'Solicitud Inicial',        // 21 - s
+            $data["activo"] ?? 1,                          // 22 - s
+            $data["creado_por"] ?? null                    // 23 - s
         );
-        $stmt->execute();
+        
+        error_log("Ejecutando statement...");
+        
+        if (!$stmt->execute()) {
+            error_log("❌ Error al ejecutar: " . $stmt->error);
+            json_out(["error" => "Error al ejecutar: " . $stmt->error], 500);
+        }
 
-        json_out(["message" => "Solicitud de presupuesto creada correctamente"]);
+        $insert_id = $conn->insert_id;
+        error_log("✅ Solicitud creada exitosamente. ID: " . $insert_id);
+        
+        json_out([
+            "message" => "Solicitud de presupuesto creada correctamente", 
+            "id" => $insert_id
+        ], 201);
+        
     } catch (Exception $e) {
+        error_log("❌ Exception: " . $e->getMessage());
+        error_log("Stack trace: " . $e->getTraceAsString());
         json_out(["error" => "Error al crear la solicitud: " . $e->getMessage()], 500);
     }
 }
@@ -121,6 +158,10 @@ if ($method === "POST") {
 if ($method === "PUT") {
     $data = json_decode(file_get_contents("php://input"), true) ?? [];
     $id = $data["id"] ?? null;
+    
+    error_log("=== SOLICITUD_PRESUPUESTO PUT ===");
+    error_log("ID: " . ($id ?? 'NULL'));
+    error_log("Datos: " . print_r($data, true));
 
     if (!$id) {
         json_out(["error" => "Falta el campo 'id'"], 400);
@@ -144,7 +185,15 @@ if ($method === "PUT") {
         if (array_key_exists($campo, $data)) {
             $updates[] = "$campo = ?";
             $values[] = $data[$campo];
-            $types .= is_numeric($data[$campo]) ? "d" : "s";
+            
+            // Determinar tipo correcto
+            if ($campo === "total_factura") {
+                $types .= "d"; // decimal
+            } elseif (is_numeric($data[$campo])) {
+                $types .= "i"; // integer
+            } else {
+                $types .= "s"; // string
+            }
         }
     }
 
@@ -155,9 +204,19 @@ if ($method === "PUT") {
     $sql = "UPDATE solicitud_presupuesto SET " . implode(", ", $updates) . " WHERE id = ?";
     $values[] = intval($id);
     $types .= "i";
+    
+    error_log("SQL UPDATE: " . $sql);
+    error_log("Types: " . $types);
+    error_log("Values: " . print_r($values, true));
 
     try {
         $stmt = $conn->prepare($sql);
+        
+        if (!$stmt) {
+            error_log("❌ Error al preparar UPDATE: " . $conn->error);
+            json_out(["error" => "Error al preparar: " . $conn->error], 500);
+        }
+        
         $bind_names[] = $types;
         foreach ($values as $i => $val) {
             $bind_name = 'b' . $i;
@@ -165,10 +224,17 @@ if ($method === "PUT") {
             $bind_names[] = &$$bind_name;
         }
         call_user_func_array([$stmt, 'bind_param'], $bind_names);
-        $stmt->execute();
+        
+        if (!$stmt->execute()) {
+            error_log("❌ Error al ejecutar UPDATE: " . $stmt->error);
+            json_out(["error" => "Error al ejecutar: " . $stmt->error], 500);
+        }
 
+        error_log("✅ Solicitud actualizada. Filas afectadas: " . $stmt->affected_rows);
         json_out(["message" => "Solicitud actualizada correctamente"]);
+        
     } catch (Exception $e) {
+        error_log("❌ Exception en PUT: " . $e->getMessage());
         json_out(["error" => "Error al actualizar solicitud: " . $e->getMessage()], 500);
     }
 }
@@ -178,6 +244,10 @@ if ($method === "PUT") {
 // =============================================
 if ($method === "DELETE") {
     $id = $_GET["id"] ?? null;
+    
+    error_log("=== SOLICITUD_PRESUPUESTO DELETE ===");
+    error_log("ID: " . ($id ?? 'NULL'));
+    
     if (!$id) {
         json_out(["error" => "Falta el parámetro 'id'"], 400);
     }
@@ -185,10 +255,17 @@ if ($method === "DELETE") {
     try {
         $stmt = $conn->prepare("DELETE FROM solicitud_presupuesto WHERE id = ?");
         $stmt->bind_param("i", $id);
-        $stmt->execute();
+        
+        if (!$stmt->execute()) {
+            error_log("❌ Error al ejecutar DELETE: " . $stmt->error);
+            json_out(["error" => "Error al ejecutar: " . $stmt->error], 500);
+        }
 
+        error_log("✅ Solicitud eliminada. Filas afectadas: " . $stmt->affected_rows);
         json_out(["message" => "Solicitud eliminada correctamente"]);
+        
     } catch (Exception $e) {
+        error_log("❌ Exception en DELETE: " . $e->getMessage());
         json_out(["error" => "Error al eliminar la solicitud: " . $e->getMessage()], 500);
     }
 }
