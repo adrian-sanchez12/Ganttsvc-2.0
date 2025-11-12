@@ -92,7 +92,7 @@ if ($method === "POST") {
         
         // ✅ CORRECCIÓN: 23 parámetros, tipos correctos
         $stmt->bind_param(
-            "isssssssssssssssssdssss", // i=int, s=string, d=decimal
+            "isssssssssssssssssdssis", // activo es entero, no string
             $data["subpartida_contratacion_id"],           // 1  - i
             $data["descripcion"],                          // 2  - s
 
@@ -126,7 +126,7 @@ if ($method === "POST") {
             
             // Estado y metadatos
             $data["estado"] ?? 'Solicitud Inicial',        // 21 - s
-            $data["activo"] ?? 1,                          // 22 - s
+            intval($data["activo"] ?? 1),                  // 22 - i
             $data["creado_por"] ?? null                    // 23 - s
         );
         
@@ -137,7 +137,7 @@ if ($method === "POST") {
             json_out(["error" => "Error al ejecutar: " . $stmt->error], 500);
         }
 
-        $insert_id = $conn->insert_id;
+        $insert_id = isset($conn) && is_object($conn) ? $conn->insert_id : null;
         error_log("✅ Solicitud creada exitosamente. ID: " . $insert_id);
         
         json_out([
@@ -184,15 +184,15 @@ if ($method === "PUT") {
     foreach ($permitidos as $campo) {
         if (array_key_exists($campo, $data)) {
             $updates[] = "$campo = ?";
-            $values[] = $data[$campo];
-            
-            // Determinar tipo correcto
-            if ($campo === "total_factura") {
-                $types .= "d"; // decimal
-            } elseif (is_numeric($data[$campo])) {
-                $types .= "i"; // integer
+            if ($campo === "activo") {
+                $values[] = intval($data[$campo]);
+                $types .= "i";
+            } elseif ($campo === "total_factura") {
+                $values[] = $data[$campo];
+                $types .= "d";
             } else {
-                $types .= "s"; // string
+                $values[] = $data[$campo];
+                $types .= "s";
             }
         }
     }
@@ -213,8 +213,9 @@ if ($method === "PUT") {
         $stmt = $conn->prepare($sql);
         
         if (!$stmt) {
-            error_log("❌ Error al preparar UPDATE: " . $conn->error);
-            json_out(["error" => "Error al preparar: " . $conn->error], 500);
+            $conn_error = (isset($conn) && is_object($conn)) ? $conn->error : 'Error de conexión';
+            error_log("❌ Error al preparar UPDATE: " . $conn_error);
+            json_out(["error" => "Error al preparar: " . $conn_error], 500);
         }
         
         $bind_names[] = $types;
@@ -243,11 +244,16 @@ if ($method === "PUT") {
 // DELETE: Eliminar solicitud por ID
 // =============================================
 if ($method === "DELETE") {
+    // Permitir id por GET o por cuerpo JSON
     $id = $_GET["id"] ?? null;
-    
+    if (!$id) {
+        $data = json_decode(file_get_contents("php://input"), true) ?? [];
+        $id = $data["id"] ?? null;
+    }
+
     error_log("=== SOLICITUD_PRESUPUESTO DELETE ===");
     error_log("ID: " . ($id ?? 'NULL'));
-    
+
     if (!$id) {
         json_out(["error" => "Falta el parámetro 'id'"], 400);
     }
@@ -255,7 +261,7 @@ if ($method === "DELETE") {
     try {
         $stmt = $conn->prepare("DELETE FROM solicitud_presupuesto WHERE id = ?");
         $stmt->bind_param("i", $id);
-        
+
         if (!$stmt->execute()) {
             error_log("❌ Error al ejecutar DELETE: " . $stmt->error);
             json_out(["error" => "Error al ejecutar: " . $stmt->error], 500);
@@ -263,7 +269,7 @@ if ($method === "DELETE") {
 
         error_log("✅ Solicitud eliminada. Filas afectadas: " . $stmt->affected_rows);
         json_out(["message" => "Solicitud eliminada correctamente"]);
-        
+
     } catch (Exception $e) {
         error_log("❌ Exception en DELETE: " . $e->getMessage());
         json_out(["error" => "Error al eliminar la solicitud: " . $e->getMessage()], 500);

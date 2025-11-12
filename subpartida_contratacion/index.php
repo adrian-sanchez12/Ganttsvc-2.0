@@ -45,6 +45,7 @@ if ($method === "GET") {
     }
 }
 
+
 // =============================================
 // POST: Crear nueva subpartida_contratacion
 // =============================================
@@ -76,8 +77,8 @@ if ($method === "POST") {
             $data["numero_contrato"],
             $data["numero_orden_compra"],
             $data["orden_pedido_sicop"],
-            $data["presupuesto_asignado"],
-            $data["activo"] ?? 1,
+            floatval($data["presupuesto_asignado"]),
+            intval($data["activo"] ?? 1),
             $data["creado_por"]
         );
         $stmt->execute();
@@ -112,8 +113,16 @@ if ($method === "PUT") {
     foreach ($permitidos as $campo) {
         if (array_key_exists($campo, $data)) {
             $updates[] = "$campo = ?";
-            $values[] = $data[$campo];
-            $types .= is_numeric($data[$campo]) ? "d" : "s";
+            if ($campo === "presupuesto_asignado") {
+                $values[] = floatval($data[$campo]);
+                $types .= "d";
+            } elseif ($campo === "activo") {
+                $values[] = intval($data[$campo]);
+                $types .= "i";
+            } else {
+                $values[] = $data[$campo];
+                $types .= "s";
+            }
         }
     }
 
@@ -148,7 +157,12 @@ if ($method === "PUT") {
 // DELETE: Eliminar por ID
 // =============================================
 if ($method === "DELETE") {
+    // Permitir id por GET o por cuerpo JSON
     $id = $_GET["id"] ?? null;
+    if (!$id) {
+        $data = json_decode(file_get_contents("php://input"), true) ?? [];
+        $id = $data["id"] ?? null;
+    }
 
     if (!$id) {
         json_out(["error" => "Falta el parámetro 'id'"], 400);
