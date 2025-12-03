@@ -54,7 +54,7 @@ if ($method === "POST") {
 
     $campos_obligatorios = ["subpartida", "ano_contrato", "nombre_subpartida", "numero_contratacion", "presupuesto_asignado"];
     foreach ($campos_obligatorios as $campo) {
-        if (empty($data[$campo])) {
+        if (!isset($data[$campo]) || $data[$campo] === "" || $data[$campo] === null) {
             json_out(["error" => "El campo '$campo' es obligatorio"], 400);
         }
     }
@@ -67,23 +67,37 @@ if ($method === "POST") {
         ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($sql);
+        
+        // Crear variables para bind_param (requiere referencias)
+        $subpartida = $data["subpartida"];
+        $ano_contrato = intval($data["ano_contrato"]);
+        $nombre_subpartida = $data["nombre_subpartida"];
+        $descripcion_contratacion = $data["descripcion_contratacion"] ?? null;
+        $numero_contratacion = $data["numero_contratacion"];
+        $numero_contrato = $data["numero_contrato"] ?? null;
+        $numero_orden_compra = $data["numero_orden_compra"] ?? null;
+        $orden_pedido_sicop = $data["orden_pedido_sicop"] ?? null;
+        $presupuesto_asignado = floatval($data["presupuesto_asignado"]);
+        $activo = intval($data["activo"] ?? 1);
+        $creado_por = $data["creado_por"] ?? null;
+        
         $stmt->bind_param(
-            "ssssssssdis",
-            $data["subpartida"],
-            $data["ano_contrato"],
-            $data["nombre_subpartida"],
-            $data["descripcion_contratacion"],
-            $data["numero_contratacion"],
-            $data["numero_contrato"],
-            $data["numero_orden_compra"],
-            $data["orden_pedido_sicop"],
-            floatval($data["presupuesto_asignado"]),
-            intval($data["activo"] ?? 1),
-            $data["creado_por"]
+            "sissssssdis",
+            $subpartida,
+            $ano_contrato,
+            $nombre_subpartida,
+            $descripcion_contratacion,
+            $numero_contratacion,
+            $numero_contrato,
+            $numero_orden_compra,
+            $orden_pedido_sicop,
+            $presupuesto_asignado,
+            $activo,
+            $creado_por
         );
         $stmt->execute();
 
-        json_out(["message" => "Subpartida creada correctamente"]);
+        json_out(["message" => "Subpartida creada correctamente", "id" => $conn->insert_id], 201);
     } catch (Exception $e) {
         json_out(["error" => "Error al crear subpartida: " . $e->getMessage()], 500);
     }
@@ -116,7 +130,7 @@ if ($method === "PUT") {
             if ($campo === "presupuesto_asignado") {
                 $values[] = floatval($data[$campo]);
                 $types .= "d";
-            } elseif ($campo === "activo") {
+            } elseif ($campo === "ano_contrato" || $campo === "activo") {
                 $values[] = intval($data[$campo]);
                 $types .= "i";
             } else {
@@ -161,7 +175,7 @@ if ($method === "DELETE") {
     $id = $_GET["id"] ?? null;
     if (!$id) {
         $data = json_decode(file_get_contents("php://input"), true) ?? [];
-        $id = $data["id"] ?? null;
+        $id = isset($data["id"]) ? intval($data["id"]) : null;
     }
 
     if (!$id) {

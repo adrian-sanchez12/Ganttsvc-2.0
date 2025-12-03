@@ -13,7 +13,7 @@ function handleCORS() {
 }
 handleCORS();
 
-// Log para depuración
+// Log para depuraci锟斤拷n
 $logFile = __DIR__ . "/upload_debug.log";
 function logMessage($message) {
     global $logFile;
@@ -22,30 +22,30 @@ function logMessage($message) {
 
 logMessage("Solicitud recibida: " . $_SERVER['REQUEST_METHOD']);
 
-// Validar método
+// Validar m锟斤拷todo
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    logMessage("❌ Método no permitido.");
-    echo json_encode(['error' => 'Método no permitido']);
+    logMessage("M茅todo no permitido.");
+    echo json_encode(['error' => 'M茅todo no permitido']);
     exit;
 }
 
 // Validar archivo e ID
 if (!isset($_FILES['file']) || !isset($_POST['id'])) {
     http_response_code(400);
-    logMessage("❌ Falta archivo o ID. POST: " . json_encode($_POST));
-    echo json_encode(['error' => 'Faltan parámetros: archivo o ID']);
+    logMessage("Falta archivo o ID. POST: " . json_encode($_POST));
+    echo json_encode(['error' => 'Faltan par谩metros: archivo o ID']);
     exit;
 }
 
 $file = $_FILES['file'];
 $id = $_POST['id'];
-logMessage("📄 Archivo recibido: " . json_encode($file));
+logMessage("Archivo recibido: " . json_encode($file));
 
 // Verificar errores de carga
 if ($file['error'] !== UPLOAD_ERR_OK) {
     http_response_code(500);
-    logMessage("❌ Error al subir el archivo. Código: " . $file['error']);
+    logMessage("Error al subir el archivo. C贸digo: " . $file['error']);
     echo json_encode(['error' => 'Error al subir el archivo']);
     exit;
 }
@@ -56,11 +56,11 @@ $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mimeType = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
 
-logMessage("📎 Tipo MIME detectado: $mimeType");
+logMessage("Tipo MIME detectado: $mimeType");
 
 if (!in_array($mimeType, $allowedTypes)) {
     http_response_code(400);
-    logMessage("❌ Tipo no permitido.");
+    logMessage("Tipo de archivo no permitido.");
     echo json_encode(['error' => 'Solo se permiten archivos PDF']);
     exit;
 }
@@ -69,25 +69,25 @@ if (!in_array($mimeType, $allowedTypes)) {
 $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0755, true);
-    logMessage("📁 Carpeta creada: $uploadDir");
+    logMessage("Carpeta creada: $uploadDir");
 }
 
-// Guardar archivo con nombre único
+// Guardar archivo con nombre 锟斤拷nico
 $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
 $filename = "documento-$id-" . uniqid() . ".$extension";
 $destination = $uploadDir . $filename;
 
 if (!move_uploaded_file($file['tmp_name'], $destination)) {
     http_response_code(500);
-    logMessage("❌ No se pudo mover el archivo a: $destination");
+    logMessage("No se pudo mover el archivo a: $destination");
     echo json_encode(['error' => 'No se pudo guardar el archivo']);
     exit;
 }
 
-// Ruta pública accesible desde el frontend
+// Ruta p锟斤拷blica accesible desde el frontend
 $url = '/uploads/' . $filename;
 
-logMessage("✅ Archivo subido exitosamente a $url");
+logMessage("Archivo subido exitosamente a $url");
 
 http_response_code(200);
 echo json_encode(['url' => $url]);

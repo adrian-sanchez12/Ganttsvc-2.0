@@ -1,5 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
+error_log('solicitud_presupuesto/index.php - Método recibido: ' . $_SERVER['REQUEST_METHOD']);
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization');
 header('Access-Control-Max-Age: 1728000');
@@ -56,7 +57,7 @@ if ($method === "POST") {
 
     $requeridos = ["subpartida_contratacion_id", "descripcion", "fecha_solicitud_boleto", "total_factura"];
     foreach ($requeridos as $campo) {
-        if (empty($data[$campo])) {
+        if (!isset($data[$campo]) || $data[$campo] === "" || $data[$campo] === null) {
             error_log("❌ Campo obligatorio faltante: $campo");
             json_out(["error" => "El campo '$campo' es obligatorio"], 400);
         }
@@ -91,43 +92,55 @@ if ($method === "POST") {
         error_log("  - total_factura: " . ($data["total_factura"] ?? 'NULL'));
         
         // ✅ CORRECCIÓN: 23 parámetros, tipos correctos
+        $subpartida_id = intval($data["subpartida_contratacion_id"]);
+        $descripcion = $data["descripcion"];
+        $fecha_solicitud_boleto = $data["fecha_solicitud_boleto"];
+        $hora_solicitud_boleto = $data["hora_solicitud_boleto"] ?? null;
+        $oficio_solicitud = $data["oficio_solicitud"] ?? null;
+        $fecha_respuesta_solicitud = $data["fecha_respuesta_solicitud"] ?? null;
+        $hora_respuesta_solicitud = $data["hora_respuesta_solicitud"] ?? null;
+        $cumple_solicitud = $data["cumple_solicitud"] ?? 'Pendiente';
+        $fecha_solicitud_emision = $data["fecha_solicitud_emision"] ?? null;
+        $hora_solicitud_emision = $data["hora_solicitud_emision"] ?? null;
+        $oficio_emision = $data["oficio_emision"] ?? null;
+        $fecha_respuesta_emision = $data["fecha_respuesta_emision"] ?? null;
+        $hora_respuesta_emision = $data["hora_respuesta_emision"] ?? null;
+        $cumple_emision = $data["cumple_emision"] ?? 'Pendiente';
+        $fecha_recibido_conforme = $data["fecha_recibido_conforme"] ?? null;
+        $hora_recibido_conforme = $data["hora_recibido_conforme"] ?? null;
+        $oficio_recepcion = $data["oficio_recepcion"] ?? null;
+        $numero_factura = $data["numero_factura"] ?? null;
+        $total_factura = floatval($data["total_factura"]);
+        $fecha_entrega_direccion = $data["fecha_entrega_direccion"] ?? null;
+        $estado = $data["estado"] ?? 'Solicitud Inicial';
+        $activo = intval($data["activo"] ?? 1);
+        $creado_por = array_key_exists("creado_por", $data) ? $data["creado_por"] : null;
+        
         $stmt->bind_param(
-            "isssssssssssssssssdssis", // activo es entero, no string
-            $data["subpartida_contratacion_id"],           // 1  - i
-            $data["descripcion"],                          // 2  - s
-
-            // Etapa 1: solicitud
-            $data["fecha_solicitud_boleto"],               // 3  - s
-            $data["hora_solicitud_boleto"] ?? null,        // 4  - s
-            $data["oficio_solicitud"] ?? null,             // 5  - s
-            $data["fecha_respuesta_solicitud"] ?? null,    // 6  - s
-            $data["hora_respuesta_solicitud"] ?? null,     // 7  - s
-            $data["cumple_solicitud"] ?? 'Pendiente',      // 8  - s
-
-            // Etapa 2: emision
-            $data["fecha_solicitud_emision"] ?? null,      // 9  - s
-            $data["hora_solicitud_emision"] ?? null,       // 10 - s
-            $data["oficio_emision"] ?? null,               // 11 - s
-            $data["fecha_respuesta_emision"] ?? null,      // 12 - s
-            $data["hora_respuesta_emision"] ?? null,       // 13 - s
-            $data["cumple_emision"] ?? 'Pendiente',        // 14 - s
-
-            // Etapa 3: recibido conforme
-            $data["fecha_recibido_conforme"] ?? null,      // 15 - s
-            $data["hora_recibido_conforme"] ?? null,       // 16 - s
-            $data["oficio_recepcion"] ?? null,             // 17 - s
-
-            // Etapa 4: facturación
-            $data["numero_factura"] ?? null,               // 18 - s
-            $data["total_factura"],                        // 19 - d (decimal)
-
-            // Etapa 5: entrega a Dirección
-            $data["fecha_entrega_direccion"] ?? null,      // 20 - s
-            
-            // Estado y metadatos
-            $data["estado"] ?? 'Solicitud Inicial',        // 21 - s
-            intval($data["activo"] ?? 1),                  // 22 - i
-            $data["creado_por"] ?? null                    // 23 - s
+            "isssssssssssssssssdssis",
+            $subpartida_id,
+            $descripcion,
+            $fecha_solicitud_boleto,
+            $hora_solicitud_boleto,
+            $oficio_solicitud,
+            $fecha_respuesta_solicitud,
+            $hora_respuesta_solicitud,
+            $cumple_solicitud,
+            $fecha_solicitud_emision,
+            $hora_solicitud_emision,
+            $oficio_emision,
+            $fecha_respuesta_emision,
+            $hora_respuesta_emision,
+            $cumple_emision,
+            $fecha_recibido_conforme,
+            $hora_recibido_conforme,
+            $oficio_recepcion,
+            $numero_factura,
+            $total_factura,
+            $fecha_entrega_direccion,
+            $estado,
+            $activo,
+            $creado_por
         );
         
         error_log("Ejecutando statement...");
@@ -188,7 +201,7 @@ if ($method === "PUT") {
                 $values[] = intval($data[$campo]);
                 $types .= "i";
             } elseif ($campo === "total_factura") {
-                $values[] = $data[$campo];
+                $values[] = floatval($data[$campo]);
                 $types .= "d";
             } else {
                 $values[] = $data[$campo];
@@ -248,7 +261,7 @@ if ($method === "DELETE") {
     $id = $_GET["id"] ?? null;
     if (!$id) {
         $data = json_decode(file_get_contents("php://input"), true) ?? [];
-        $id = $data["id"] ?? null;
+        $id = isset($data["id"]) ? intval($data["id"]) : null;
     }
 
     error_log("=== SOLICITUD_PRESUPUESTO DELETE ===");
