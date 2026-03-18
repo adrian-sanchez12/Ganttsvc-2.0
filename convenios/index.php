@@ -95,5 +95,79 @@ if ($method === "DELETE") {
     exit;
 }
 
+if ($method === "PUT") {
+    $body = json_decode(file_get_contents("php://input"), true);
+
+    $id = $body['id'] ?? null;
+    if (!$id) {
+        http_response_code(400);
+        echo json_encode(["error" => "ID del convenio es obligatorio para actualizar"]);
+        exit;
+    }
+
+    // Campos permitidos para actualizar
+    $allowed = [
+        'cooperante' => 's',
+        'nombre' => 's',
+        'sector' => 's',
+        'fase_actual' => 's',
+        'firmado' => 'i',
+        'consecutivo_numerico' => 'i',
+        'fecha_inicio' => 's',
+        'area_estrategica' => 's'
+    ];
+
+    $sets = [];
+    $params = [];
+    $types = '';
+
+    foreach ($allowed as $field => $type) {
+        if (array_key_exists($field, $body)) {
+            $sets[] = "$field = ?";
+            $params[] = $body[$field];
+            $types .= $type;
+        }
+    }
+
+    if (count($sets) === 0) {
+        http_response_code(400);
+        echo json_encode(["error" => "No hay campos para actualizar"]);
+        exit;
+    }
+
+    $sql = "UPDATE convenios SET " . implode(', ', $sets) . " WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        http_response_code(500);
+        echo json_encode(["error" => "Error preparando la consulta: " . $conn->error]);
+        exit;
+    }
+
+    // Agregar el id al final de los parámetros
+    $params[] = $id;
+    $types .= 'i';
+
+    // bind_param requiere referencias
+    $bind_names[] = $types;
+    for ($i=0; $i < count($params); $i++) {
+        $bind_name = 'bind' . $i;
+        $$bind_name = $params[$i];
+        $bind_names[] = &$$bind_name;
+    }
+
+    call_user_func_array(array($stmt, 'bind_param'), $bind_names);
+
+    if ($stmt->execute()) {
+        echo json_encode(["message" => "Convenio actualizado correctamente"]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["error" => "Error en la base de datos: " . $stmt->error]);
+    }
+
+    $stmt->close();
+    exit;
+}
+
 http_response_code(405); // Método no permitido
 echo json_encode(["error" => "Método no permitido"]);
